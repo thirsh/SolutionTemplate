@@ -20,7 +20,7 @@ namespace SolutionTemplate.Service.Test
                 }
             };
 
-            var widgetRepository = new Mock<IRepository<Dm.Widget, int>>();
+            var widgetRepository = new Mock<IRepository<Dm.Widget>>();
 
             widgetRepository.Setup(x => x.FindAll(y => y.Active, null)).Returns(widgets);
 
