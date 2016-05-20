@@ -1,20 +1,20 @@
-﻿using System.Collections.Generic;
+﻿using SolutionTemplate.BusinessModel;
+using System.Collections.Generic;
 using System.Linq;
-using Bm = SolutionTemplate.BusinessModel;
 using Dm = SolutionTemplate.DataModel;
 
 namespace SolutionTemplate.Core.ModelMappings
 {
-    public static class Widget
+    public static class WidgetMapping
     {
-        public static Bm.Widget ToBusinessModel(this Dm.Widget model)
+        public static Widget ToBusinessModel(this Dm.Widget model)
         {
             if (model == null)
             {
                 return null;
             }
 
-            return new Bm.Widget
+            return new Widget
             {
                 Id = model.Id,
                 Name = model.Name,
@@ -26,7 +26,7 @@ namespace SolutionTemplate.Core.ModelMappings
             };
         }
 
-        public static List<Bm.Widget> ToBusinessModels(this IEnumerable<Dm.Widget> models)
+        public static List<Widget> ToBusinessModels(this IEnumerable<Dm.Widget> models)
         {
             if (models == null)
             {

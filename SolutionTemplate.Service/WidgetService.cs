@@ -1,8 +1,8 @@
 ﻿using SharpRepository.Repository;
+using SolutionTemplate.BusinessModel;
 using SolutionTemplate.Core.ModelMappings;
 using SolutionTemplate.Core.ServiceInterfaces;
 using System.Collections.Generic;
-using Bm = SolutionTemplate.BusinessModel;
 using Dm = SolutionTemplate.DataModel;
 
 namespace SolutionTemplate.Service
@@ -16,7 +16,7 @@ namespace SolutionTemplate.Service
             _widgetRepo = widgetRepo;
         }
 
-        public List<Bm.Widget> GetActiveWidgets()
+        public List<Widget> GetActiveWidgets()
         {
             return _widgetRepo
                 .FindAll(x => x.Active)

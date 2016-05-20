@@ -40,8 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ModelMappings\Doodad.cs" />
-    <Compile Include="ModelMappings\Widget.cs" />
+    <Compile Include="ModelMappings\DoodadMapping.cs" />
+    <Compile Include="ModelMappings\WidgetMapping.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceInterfaces\IWidgetService.cs" />
   </ItemGroup>

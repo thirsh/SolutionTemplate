@@ -1,20 +1,20 @@
-﻿using System.Collections.Generic;
+﻿using SolutionTemplate.BusinessModel;
+using System.Collections.Generic;
 using System.Linq;
-using Bm = SolutionTemplate.BusinessModel;
 using Dm = SolutionTemplate.DataModel;
 
 namespace SolutionTemplate.Core.ModelMappings
 {
-    public static class Doodad
+    public static class DoodadMapping
     {
-        public static Bm.Doodad ToBusinessModel(this Dm.Doodad model)
+        public static Doodad ToBusinessModel(this Dm.Doodad model)
         {
             if (model == null)
             {
                 return null;
             }
 
-            return new Bm.Doodad
+            return new Doodad
             {
                 Id = model.Id,
                 WidgetId = model.WidgetId,
@@ -26,7 +26,7 @@ namespace SolutionTemplate.Core.ModelMappings
             };
         }
 
-        public static List<Bm.Doodad> ToBusinessModels(this IEnumerable<Dm.Doodad> models)
+        public static List<Doodad> ToBusinessModels(this IEnumerable<Dm.Doodad> models)
         {
             if (models == null)
             {

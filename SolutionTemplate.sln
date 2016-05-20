@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SolutionTemplate.Core", "So
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SolutionTemplate.BusinessModel", "SolutionTemplate.BusinessModel\SolutionTemplate.BusinessModel.csproj", "{DD850C05-75C5-421D-B94C-5DF951A79A1A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SolutionTemplate.Service.Test", "SolutionTemplate.Service.Test\SolutionTemplate.Service.Test.csproj", "{B868B88E-CD84-4D61-85E7-894EB9EFF05A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,6 +55,10 @@ Global
 		{DD850C05-75C5-421D-B94C-5DF951A79A1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DD850C05-75C5-421D-B94C-5DF951A79A1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DD850C05-75C5-421D-B94C-5DF951A79A1A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B868B88E-CD84-4D61-85E7-894EB9EFF05A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B868B88E-CD84-4D61-85E7-894EB9EFF05A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B868B88E-CD84-4D61-85E7-894EB9EFF05A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B868B88E-CD84-4D61-85E7-894EB9EFF05A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
