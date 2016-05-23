@@ -1,7 +1,4 @@
-﻿using SharpRepository.Repository;
-using SolutionTemplate.Core.ServiceInterfaces;
-using SolutionTemplate.DataModel;
-using SolutionTemplate.Service;
+﻿using SolutionTemplate.Core.ServiceInterfaces;
 using System.Web.Http;
 
 namespace SolutionTemplate.RestApi.Controllers
@@ -10,14 +7,9 @@ namespace SolutionTemplate.RestApi.Controllers
     {
         private readonly IWidgetService _widgetsService;
 
-        //public WidgetsController(IWidgetService widgetService)
-        //{
-        //    _widgetsService = widgetService;
-        //}
-
-        public WidgetsController()
+        public WidgetsController(IWidgetService widgetService)
         {
-            _widgetsService = new WidgetService(RepositoryFactory.GetInstance<Widget, int>());
+            _widgetsService = widgetService;
         }
 
         public IHttpActionResult GetWidget()

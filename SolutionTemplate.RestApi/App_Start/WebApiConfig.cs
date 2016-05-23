@@ -9,7 +9,7 @@ namespace SolutionTemplate.RestApi
         {
             var config = new HttpConfiguration();
 
-            // Web API routes
+            // Web API
             config.MapHttpAttributeRoutes();
 
             config.Routes.MapHttpRoute(name: "DefaultRouting",

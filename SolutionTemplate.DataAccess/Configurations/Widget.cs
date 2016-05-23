@@ -12,10 +12,10 @@ namespace SolutionTemplate.DataAccess.Configurations
 
             HasKey(m => m.Id);
 
-            Property(m => m.Created)
+            Property(m => m.CreatedUtc)
                 .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Computed);
 
-            Property(m => m.Updated)
+            Property(m => m.UpdatedUtc)
                 .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Computed);
 
             HasMany(m => m.Doodads)

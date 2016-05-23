@@ -19,8 +19,8 @@ namespace SolutionTemplate.Core.ModelMappings
                 Id = model.Id,
                 Name = model.Name,
                 Active = model.Active,
-                Created = model.Created,
-                Updated = model.Updated,
+                Created = model.CreatedUtc,
+                Updated = model.UpdatedUtc,
 
                 Doodads = model.Doodads.ToBusinessModels()
             };
@@ -50,8 +50,8 @@ namespace SolutionTemplate.Core.ModelMappings
                 Id = model.Id,
                 Name = model.Name,
                 Active = model.Active,
-                Created = model.Created,
-                Updated = model.Updated,
+                CreatedUtc = model.Created,
+                UpdatedUtc = model.Updated,
 
                 Doodads = model.Doodads.ToDataModels()
             };
