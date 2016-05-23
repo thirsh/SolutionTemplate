@@ -10,7 +10,7 @@ namespace SolutionTemplate.Service.Test
     public class WidgetServiceTests
     {
         [TestMethod]
-        public void ServiceShouldGetActiveWidgets()
+        public void ServiceShouldGetAllWidgets()
         {
             var widgets = new List<Dm.Widget>
             {
@@ -26,7 +26,7 @@ namespace SolutionTemplate.Service.Test
 
             var service = new WidgetService(widgetRepository.Object);
 
-            var results = service.GetActiveWidgets();
+            var results = service.GetWidgets();
 
             widgetRepository.Verify(x => x.FindAll(y => y.Active, null), Times.Once);
 

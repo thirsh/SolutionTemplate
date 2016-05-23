@@ -5,6 +5,6 @@ namespace SolutionTemplate.Core.ServiceInterfaces
 {
     public interface IWidgetService
     {
-        List<Widget> GetActiveWidgets();
+        List<Widget> GetWidgets();
     }
 }

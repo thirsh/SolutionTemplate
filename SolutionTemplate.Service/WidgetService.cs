@@ -9,17 +9,17 @@ namespace SolutionTemplate.Service
 {
     public class WidgetService : IWidgetService
     {
-        private readonly IRepository<Dm.Widget> _widgetRepo;
+        private readonly IRepository<Dm.Widget, int> _widgetRepo;
 
-        public WidgetService(IRepository<Dm.Widget> widgetRepo)
+        public WidgetService(IRepository<Dm.Widget, int> widgetRepo)
         {
             _widgetRepo = widgetRepo;
         }
 
-        public List<Widget> GetActiveWidgets()
+        public List<Widget> GetWidgets()
         {
             return _widgetRepo
-                .FindAll(x => x.Active)
+                .GetAll()
                 .ToBusinessModels();
         }
     }
