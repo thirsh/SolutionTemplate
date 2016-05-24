@@ -3,6 +3,7 @@ using System.Web.Http;
 
 namespace SolutionTemplate.RestApi.Controllers
 {
+    [RoutePrefix("api/Widgets")]
     public class WidgetsController : ApiController
     {
         private readonly IWidgetService _widgetsService;
@@ -12,6 +13,7 @@ namespace SolutionTemplate.RestApi.Controllers
             _widgetsService = widgetService;
         }
 
+        [Route]
         public IHttpActionResult GetWidget()
         {
             var widgets = _widgetsService.GetWidgets();

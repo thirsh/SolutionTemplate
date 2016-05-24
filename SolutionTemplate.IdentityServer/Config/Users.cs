@@ -21,10 +21,10 @@ namespace SolutionTemplate.IdentityServer.Config
                     {
                         new Claim(Constants.ClaimTypes.GivenName, "Kevin"),
                         new Claim(Constants.ClaimTypes.FamilyName, "Dockx"),
-                        //new Claim(Constants.ClaimTypes.Role, "WebReadUser"),
-                        //new Claim(Constants.ClaimTypes.Role, "WebWriteUser"),
-                        //new Claim(Constants.ClaimTypes.Role, "MobileReadUser"),
-                        //new Claim(Constants.ClaimTypes.Role, "MobileWriteUser")
+                        new Claim(Constants.ClaimTypes.Role, "WebReadUser"),
+                        new Claim(Constants.ClaimTypes.Role, "WebWriteUser"),
+                        new Claim(Constants.ClaimTypes.Role, "MobileReadUser"),
+                        new Claim(Constants.ClaimTypes.Role, "MobileWriteUser")
                     }
                 },
                 new InMemoryUser
@@ -37,8 +37,8 @@ namespace SolutionTemplate.IdentityServer.Config
                     {
                         new Claim(Constants.ClaimTypes.GivenName, "Sven"),
                         new Claim(Constants.ClaimTypes.FamilyName, "Vercauteren"),
-                        //new Claim(Constants.ClaimTypes.Role, "WebReadUser"),
-                        //new Claim(Constants.ClaimTypes.Role, "MobileReadUser")
+                        new Claim(Constants.ClaimTypes.Role, "WebReadUser"),
+                        new Claim(Constants.ClaimTypes.Role, "MobileReadUser")
                     }
                 },
                 new InMemoryUser
@@ -51,8 +51,8 @@ namespace SolutionTemplate.IdentityServer.Config
                     {
                         new Claim(Constants.ClaimTypes.GivenName, "Nils"),
                         new Claim(Constants.ClaimTypes.FamilyName, "Missorten"),
-                        //new Claim(Constants.ClaimTypes.Role, "WebWriteUser"),
-                        //new Claim(Constants.ClaimTypes.Role, "MobileWriteUser")
+                        new Claim(Constants.ClaimTypes.Role, "WebWriteUser"),
+                        new Claim(Constants.ClaimTypes.Role, "MobileWriteUser")
                     }
                 },
                 new InMemoryUser
@@ -65,8 +65,8 @@ namespace SolutionTemplate.IdentityServer.Config
                     {
                         new Claim(Constants.ClaimTypes.GivenName, "Kenneth"),
                         new Claim(Constants.ClaimTypes.FamilyName, "Mills"),
-                        //new Claim(Constants.ClaimTypes.Role, "WebReadUser"),
-                        //new Claim(Constants.ClaimTypes.Role, "WebWriteUser")
+                        new Claim(Constants.ClaimTypes.Role, "WebReadUser"),
+                        new Claim(Constants.ClaimTypes.Role, "WebWriteUser")
                     }
                 }
             };

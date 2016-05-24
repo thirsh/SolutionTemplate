@@ -1,15 +1,14 @@
-﻿using Microsoft.Owin;
+﻿using IdentityServer3.AccessTokenValidation;
+using Microsoft.Owin;
 using Ninject;
 using Ninject.Web.Common;
 using Ninject.Web.Common.OwinHost;
 using Ninject.Web.WebApi.OwinHost;
 using Owin;
 using SharpRepository.Ioc.Ninject;
-using SharpRepository.Repository;
 using SharpRepository.Repository.Ioc;
 using SolutionTemplate.Core.ServiceInterfaces;
 using SolutionTemplate.DataAccess;
-using SolutionTemplate.DataModel;
 using SolutionTemplate.Service;
 using System.Configuration;
 using System.Data.Entity;
@@ -22,6 +21,14 @@ namespace SolutionTemplate.RestApi
     {
         public void Configuration(IAppBuilder app)
         {
+            //app
+            //    .UseIdentityServerBearerTokenAuthentication(
+            //        new IdentityServerBearerTokenAuthenticationOptions
+            //        {
+            //            Authority = "https://localhost:44375/identity/",
+            //            RequiredScopes = new[] { "solutionTemplateApi" }
+            //        });
+
             app
                 .UseNinjectMiddleware(CreateKernel)
                 .UseNinjectWebApi(WebApiConfig.Register());
@@ -31,13 +38,6 @@ namespace SolutionTemplate.RestApi
         {
             var kernel = new StandardKernel();
 
-            RegisterServices(kernel);
-
-            return kernel;
-        }
-
-        private static void RegisterServices(IKernel kernel)
-        {
             kernel.BindSharpRepository();
 
             RepositoryDependencyResolver.SetDependencyResolver(new NinjectDependencyResolver(kernel));
@@ -50,6 +50,8 @@ namespace SolutionTemplate.RestApi
                 .WithConstructorArgument("connectionString", connectionString);
 
             kernel.Bind<IWidgetService>().To<WidgetService>();
+
+            return kernel;
         }
     }
 }

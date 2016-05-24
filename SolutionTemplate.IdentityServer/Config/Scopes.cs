@@ -10,7 +10,32 @@ namespace SolutionTemplate.IdentityServer.Config
             return new List<Scope>
             {
                 StandardScopes.OpenId,
-                StandardScopes.Profile
+                StandardScopes.Profile,
+
+                new Scope
+                {
+                    Name = "roles",
+                    DisplayName = "Roles",
+                    Enabled = true,
+                    Description = "The roles you belong to.",
+                    Type = ScopeType.Identity,
+                    Claims = new List<ScopeClaim>
+                    {
+                        new ScopeClaim("role")
+                    }
+                },
+                new Scope
+                {
+                    Name = "solutionTemplateApi",
+                    DisplayName = "Solution Template API Scope",
+                    Enabled = true,
+                    Type = ScopeType.Resource,
+                    Emphasize = false,
+                    Claims = new List<ScopeClaim>
+                    {
+                        new ScopeClaim("role")
+                    }
+                }
             };
         }
     }
