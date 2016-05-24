@@ -9,6 +9,7 @@ using SharpRepository.Ioc.Ninject;
 using SharpRepository.Repository.Ioc;
 using SolutionTemplate.Core.ServiceInterfaces;
 using SolutionTemplate.DataAccess;
+using SolutionTemplate.RestApi.Authorization;
 using SolutionTemplate.Service;
 using System.Configuration;
 using System.Data.Entity;
@@ -21,13 +22,14 @@ namespace SolutionTemplate.RestApi
     {
         public void Configuration(IAppBuilder app)
         {
-            //app
-            //    .UseIdentityServerBearerTokenAuthentication(
-            //        new IdentityServerBearerTokenAuthenticationOptions
-            //        {
-            //            Authority = "https://localhost:44375/identity/",
-            //            RequiredScopes = new[] { "solutionTemplateApi" }
-            //        });
+            app
+                .UseResourceAuthorization(new ApiAuthorizationManager())
+                .UseIdentityServerBearerTokenAuthentication(
+                    new IdentityServerBearerTokenAuthenticationOptions
+                    {
+                        Authority = "https://localhost:44375/identity/",
+                        RequiredScopes = new[] { "solution-template-api" }
+                    });
 
             app
                 .UseNinjectMiddleware(CreateKernel)

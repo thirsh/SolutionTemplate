@@ -12,9 +12,11 @@ namespace SolutionTemplate.IdentityServer.Config
             {
                 new Client {
                     ClientName = "HTTP Client",
-                    ClientId = "20FF5635-2A79-42C2-AD04-40790BE3E14E",
+                    ClientId = "web",
                     Enabled = true,
-                    Flow = Flows.Hybrid,    //Flows.Implicit???
+                    //Flow = Flows.Hybrid,
+                    //Flow = Flows.Implicit,
+                    Flow = Flows.ResourceOwner,
                     RequireConsent = false,
 
                     //RedirectUris = new List<string> { }
@@ -23,7 +25,7 @@ namespace SolutionTemplate.IdentityServer.Config
                     {
                         Constants.StandardScopes.OpenId,
                         "roles",
-                        "solutionTemplateApi"
+                        "solution-template-api"
                     }
                 }
             };

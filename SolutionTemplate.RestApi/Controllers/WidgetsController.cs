@@ -1,5 +1,7 @@
 ﻿using SolutionTemplate.Core.ServiceInterfaces;
+using SolutionTemplate.RestApi.Authorization;
 using System.Web.Http;
+using Thinktecture.IdentityModel.WebApi;
 
 namespace SolutionTemplate.RestApi.Controllers
 {
@@ -13,6 +15,7 @@ namespace SolutionTemplate.RestApi.Controllers
             _widgetsService = widgetService;
         }
 
+        [ResourceAuthorize(Action.Read, Resource.Widgets)]
         [Route]
         public IHttpActionResult GetWidget()
         {

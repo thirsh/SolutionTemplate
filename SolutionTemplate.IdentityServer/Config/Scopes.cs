@@ -26,8 +26,8 @@ namespace SolutionTemplate.IdentityServer.Config
                 },
                 new Scope
                 {
-                    Name = "solutionTemplateApi",
-                    DisplayName = "Solution Template API Scope",
+                    Name = "solution-template-api",
+                    DisplayName = "Solution Template API",
                     Enabled = true,
                     Type = ScopeType.Resource,
                     Emphasize = false,
