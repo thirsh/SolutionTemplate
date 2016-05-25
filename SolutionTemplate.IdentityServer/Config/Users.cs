@@ -13,62 +13,18 @@ namespace SolutionTemplate.IdentityServer.Config
             {
                 new InMemoryUser
                 {
-                    Username = "Kevin",
+                    Username = "JohnDoe",
                     Password = "secret",
                     Subject = "1",
 
                     Claims = new[]
                     {
-                        new Claim(Constants.ClaimTypes.GivenName, "Kevin"),
-                        new Claim(Constants.ClaimTypes.FamilyName, "Dockx"),
-                        new Claim(Constants.ClaimTypes.Role, "WebReadUser"),
-                        new Claim(Constants.ClaimTypes.Role, "WebWriteUser"),
-                        new Claim(Constants.ClaimTypes.Role, "MobileReadUser"),
-                        new Claim(Constants.ClaimTypes.Role, "MobileWriteUser")
+                        new Claim(Constants.ClaimTypes.GivenName, "John"),
+                        new Claim(Constants.ClaimTypes.FamilyName, "Doe"),
+                        new Claim(Constants.ClaimTypes.Role, "ApiReadWidget"),
+                        new Claim(Constants.ClaimTypes.Role, "ApiWriteWidget")
                     }
                 },
-                new InMemoryUser
-                {
-                    Username = "Sven",
-                    Password = "secret",
-                    Subject = "2",
-
-                    Claims = new[]
-                    {
-                        new Claim(Constants.ClaimTypes.GivenName, "Sven"),
-                        new Claim(Constants.ClaimTypes.FamilyName, "Vercauteren"),
-                        new Claim(Constants.ClaimTypes.Role, "WebReadUser"),
-                        new Claim(Constants.ClaimTypes.Role, "MobileReadUser")
-                    }
-                },
-                new InMemoryUser
-                {
-                    Username = "Nils",
-                    Password = "secret",
-                    Subject = "3",
-
-                    Claims = new[]
-                    {
-                        new Claim(Constants.ClaimTypes.GivenName, "Nils"),
-                        new Claim(Constants.ClaimTypes.FamilyName, "Missorten"),
-                        new Claim(Constants.ClaimTypes.Role, "WebWriteUser"),
-                        new Claim(Constants.ClaimTypes.Role, "MobileWriteUser")
-                    }
-                },
-                new InMemoryUser
-                {
-                    Username = "Kenneth",
-                    Password = "secret",
-                    Subject = "4",
-
-                    Claims = new[]
-                    {
-                        new Claim(Constants.ClaimTypes.GivenName, "Kenneth"),
-                        new Claim(Constants.ClaimTypes.FamilyName, "Mills"),
-                        new Claim(Constants.ClaimTypes.Role, "WebReadUser"),
-                        new Claim(Constants.ClaimTypes.Role, "WebWriteUser")
-                    }
-                }
             };
         }
     }

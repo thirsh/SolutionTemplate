@@ -202,6 +202,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Authorization\Role.cs" />
     <Compile Include="Authorization\Resource.cs" />
     <Compile Include="Authorization\Action.cs" />
     <Compile Include="Controllers\WidgetsController.cs" />

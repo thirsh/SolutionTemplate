@@ -23,7 +23,7 @@ namespace SolutionTemplate.RestApi.Authorization
             switch (context.Action.First().Value)
             {
                 case Action.Read:
-                    return Eval(context.Principal.HasClaim("role", "WebReadUser") || context.Principal.HasClaim("role", "WebRightUser"));
+                    return Eval(context.Principal.HasClaim("role", Role.ApiReadWidgets) || context.Principal.HasClaim("role", Role.ApiWriteWidgets));
 
                 default:
                     return Nok();
