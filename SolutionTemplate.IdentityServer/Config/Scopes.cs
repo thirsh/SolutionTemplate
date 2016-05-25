@@ -1,4 +1,5 @@
-﻿using IdentityServer3.Core.Models;
+﻿using IdentityServer3.Core;
+using IdentityServer3.Core.Models;
 using System.Collections.Generic;
 
 namespace SolutionTemplate.IdentityServer.Config
@@ -21,7 +22,7 @@ namespace SolutionTemplate.IdentityServer.Config
                     Type = ScopeType.Identity,
                     Claims = new List<ScopeClaim>
                     {
-                        new ScopeClaim("role")
+                        new ScopeClaim(Constants.ClaimTypes.Role)
                     }
                 },
                 new Scope
@@ -33,7 +34,7 @@ namespace SolutionTemplate.IdentityServer.Config
                     Emphasize = false,
                     Claims = new List<ScopeClaim>
                     {
-                        new ScopeClaim("role")
+                        new ScopeClaim(Constants.ClaimTypes.Role)
                     }
                 }
             };
