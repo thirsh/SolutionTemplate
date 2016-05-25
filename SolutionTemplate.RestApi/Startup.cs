@@ -28,7 +28,7 @@ namespace SolutionTemplate.RestApi
                     new IdentityServerBearerTokenAuthenticationOptions
                     {
                         Authority = "https://localhost:44375/identity/",
-                        RequiredScopes = new[] { "solution-template-api" }
+                        RequiredScopes = new[] { "openid", "profile", "solution-template-api" }
                     });
 
             app

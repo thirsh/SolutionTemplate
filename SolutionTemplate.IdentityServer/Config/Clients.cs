@@ -11,19 +11,19 @@ namespace SolutionTemplate.IdentityServer.Config
             return new[]
             {
                 new Client {
-                    ClientName = "HTTP Client",
-                    ClientId = "web",
+                    ClientName = "Real Big Client, Inc.",
+                    ClientId = "real-big",
                     Enabled = true,
-                    //Flow = Flows.Hybrid,
-                    //Flow = Flows.Implicit,
                     Flow = Flows.ResourceOwner,
                     RequireConsent = false,
+                    ClientSecrets = new List<Secret> { new Secret("141CA487-D1A5-4246-9AA3-7407712A8F29".Sha256()) },
 
                     //RedirectUris = new List<string> { }
 
                     AllowedScopes = new List<string>
                     {
                         Constants.StandardScopes.OpenId,
+                        Constants.StandardScopes.Profile,
                         "roles",
                         "solution-template-api"
                     }
