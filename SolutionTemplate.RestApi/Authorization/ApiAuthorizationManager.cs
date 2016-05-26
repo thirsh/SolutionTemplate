@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using IdentityModel;
+using System.Linq;
 using System.Threading.Tasks;
 using Thinktecture.IdentityModel.Owin.ResourceAuthorization;
 
@@ -23,7 +24,8 @@ namespace SolutionTemplate.RestApi.Authorization
             switch (context.Action.First().Value)
             {
                 case Action.Read:
-                    return Eval(context.Principal.HasClaim("role", Role.ApiReadWidget) || context.Principal.HasClaim("role", Role.ApiWriteWidget));
+                    return Eval(context.Principal.HasClaim(JwtClaimTypes.Role, Role.ApiReadWidget)
+                        || context.Principal.HasClaim(JwtClaimTypes.Role, Role.ApiWriteWidget));
 
                 default:
                     return Nok();

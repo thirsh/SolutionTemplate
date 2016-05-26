@@ -1,6 +1,5 @@
 ﻿using SolutionTemplate.Core.ServiceInterfaces;
 using SolutionTemplate.RestApi.Authorization;
-using System.Security.Claims;
 using System.Web.Http;
 using Thinktecture.IdentityModel.WebApi;
 

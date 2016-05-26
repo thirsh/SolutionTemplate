@@ -11,8 +11,10 @@ using SolutionTemplate.Core.ServiceInterfaces;
 using SolutionTemplate.DataAccess;
 using SolutionTemplate.RestApi.Authorization;
 using SolutionTemplate.Service;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Data.Entity;
+using System.IdentityModel.Tokens;
 
 [assembly: OwinStartup(typeof(SolutionTemplate.RestApi.Startup))]
 
@@ -22,6 +24,8 @@ namespace SolutionTemplate.RestApi
     {
         public void Configuration(IAppBuilder app)
         {
+            JwtSecurityTokenHandler.InboundClaimTypeMap = new Dictionary<string, string>();
+
             app
                 .UseResourceAuthorization(new ApiAuthorizationManager())
                 .UseIdentityServerBearerTokenAuthentication(
