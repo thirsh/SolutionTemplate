@@ -25,6 +25,7 @@ namespace SolutionTemplate.IdentityServer.Config
                         Constants.StandardScopes.OpenId,
                         Constants.StandardScopes.Profile,
                         "roles",
+                        "user-profile",
                         "solution-template-api"
                     }
                 }

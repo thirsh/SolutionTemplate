@@ -15,6 +15,8 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data.Entity;
 using System.IdentityModel.Tokens;
+using System.Security.Claims;
+using System.Web;
 
 [assembly: OwinStartup(typeof(SolutionTemplate.RestApi.Startup))]
 
@@ -32,7 +34,7 @@ namespace SolutionTemplate.RestApi
                     new IdentityServerBearerTokenAuthenticationOptions
                     {
                         Authority = ConfigurationManager.AppSettings["IdentityServerAddress"],
-                        RequiredScopes = new[] { "openid", "profile", "solution-template-api" }
+                        RequiredScopes = new[] { "openid", "profile", "user-profile", "solution-template-api" }
                     });
 
             app
@@ -49,6 +51,10 @@ namespace SolutionTemplate.RestApi
             RepositoryDependencyResolver.SetDependencyResolver(new NinjectDependencyResolver(kernel));
 
             var connectionString = ConfigurationManager.ConnectionStrings["SolutionTemplate"].ConnectionString;
+
+            // TODO: http://www.seankenny.me/blog/2014/07/25/custom-owin-iclaimsprincipal-with-ninject/
+            kernel.Bind<ClaimsPrincipal>()
+                .ToMethod(x => (ClaimsPrincipal)HttpContext.Current.User);
 
             kernel.Bind<DbContext>()
                 .To<SolutionTemplateContext>()

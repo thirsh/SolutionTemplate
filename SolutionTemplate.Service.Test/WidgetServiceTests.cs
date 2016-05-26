@@ -2,6 +2,7 @@
 using Moq;
 using SharpRepository.Repository;
 using System.Collections.Generic;
+using System.Security.Claims;
 using Dm = SolutionTemplate.DataModel;
 
 namespace SolutionTemplate.Service.Test
@@ -20,15 +21,16 @@ namespace SolutionTemplate.Service.Test
                 }
             };
 
+            var principal = new Mock<ClaimsPrincipal>();
             var widgetRepository = new Mock<IRepository<Dm.Widget>>();
 
-            widgetRepository.Setup(x => x.FindAll(y => y.Active, null)).Returns(widgets);
+            widgetRepository.Setup(x => x.GetAll()).Returns(widgets);
 
-            var service = new WidgetService(widgetRepository.Object);
+            var service = new WidgetService(principal.Object, widgetRepository.Object);
 
             var results = service.GetWidgets();
 
-            widgetRepository.Verify(x => x.FindAll(y => y.Active, null), Times.Once);
+            widgetRepository.Verify(x => x.GetAll(), Times.Once);
 
             Assert.IsNotNull(results);
             Assert.AreEqual(widgets.Count, results.Count);
