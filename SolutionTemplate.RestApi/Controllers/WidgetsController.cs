@@ -16,12 +16,10 @@ namespace SolutionTemplate.RestApi.Controllers
             _widgetsService = widgetService;
         }
 
-        //[ResourceAuthorize(Action.Read, Resource.Widgets)]
+        [ResourceAuthorize(Action.Read, Resource.Widgets)]
         [Route]
         public IHttpActionResult GetWidget()
         {
-            var identity = User.Identity as ClaimsIdentity;
-
             var widgets = _widgetsService.GetWidgets();
 
             return Ok(widgets);

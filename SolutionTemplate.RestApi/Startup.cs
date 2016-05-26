@@ -27,10 +27,7 @@ namespace SolutionTemplate.RestApi
                 .UseIdentityServerBearerTokenAuthentication(
                     new IdentityServerBearerTokenAuthenticationOptions
                     {
-                        Authority = "https://localhost:44375/identity",
-                        //AuthenticationType = "Bearer",
-                        //AuthenticationMode = Microsoft.Owin.Security.AuthenticationMode.Active,
-                        //ValidationMode = ValidationMode.Local,
+                        Authority = ConfigurationManager.AppSettings["IdentityServerAddress"],
                         RequiredScopes = new[] { "openid", "profile", "solution-template-api" }
                     });
 

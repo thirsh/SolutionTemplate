@@ -17,7 +17,6 @@ namespace SolutionTemplate.IdentityServer.Config
                     Flow = Flows.ResourceOwner,
                     RequireConsent = false,
                     ClientSecrets = new List<Secret> { new Secret("141CA487-D1A5-4246-9AA3-7407712A8F29".Sha256()) },
-                    //AccessTokenType = AccessTokenType.Jwt,
 
                     //RedirectUris = new List<string> { }
 

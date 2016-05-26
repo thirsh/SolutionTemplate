@@ -3,6 +3,7 @@ using Microsoft.Owin;
 using Owin;
 using SolutionTemplate.IdentityServer.Config;
 using System;
+using System.Configuration;
 using System.Security.Cryptography.X509Certificates;
 
 [assembly: OwinStartup(typeof(SolutionTemplate.IdentityServer.Startup))]
@@ -10,7 +11,7 @@ using System.Security.Cryptography.X509Certificates;
 namespace SolutionTemplate.IdentityServer
 {
     /// <summary>
-    /// To get configuration - https://localhost:44375/identity/.well-known/openid-configuration
+    /// To get configuration - https://localhost:44320/identity/.well-known/openid-configuration
     /// </summary>
     public class Startup
     {
@@ -21,7 +22,7 @@ namespace SolutionTemplate.IdentityServer
                 idApp.UseIdentityServer(new IdentityServerOptions
                 {
                     SiteName = "Solution Template Embedded Identity Server",
-                    IssuerUri = "https://solutiontemplateidsrv3/embedded",
+                    IssuerUri = ConfigurationManager.AppSettings["IssuerUri"],
 
                     Factory = new IdentityServerServiceFactory()
                         .UseInMemoryUsers(Users.Get())
@@ -30,7 +31,9 @@ namespace SolutionTemplate.IdentityServer
 
                     SigningCertificate = new X509Certificate2(
                         string.Format(@"{0}\bin\Certificates\idsrv3test.pfx",
-                        AppDomain.CurrentDomain.BaseDirectory), "idsrv3test")
+                        AppDomain.CurrentDomain.BaseDirectory), "idsrv3test"),
+
+                    RequireSsl = bool.Parse(ConfigurationManager.AppSettings["RequireSsl"])
                 });
             });
         }
