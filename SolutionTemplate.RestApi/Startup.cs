@@ -16,7 +16,6 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data.Entity;
 using System.IdentityModel.Tokens;
-using System.Security.Claims;
 using System.Web;
 
 [assembly: OwinStartup(typeof(SolutionTemplate.RestApi.Startup))]
