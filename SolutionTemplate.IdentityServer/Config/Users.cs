@@ -21,11 +21,10 @@ namespace SolutionTemplate.IdentityServer.Config
                     {
                         new Claim(Constants.ClaimTypes.Id, "1"),
                         new Claim(Constants.ClaimTypes.Name, "jdoe"),
-                        new Claim(Constants.ClaimTypes.PreferredUserName, "jdoe"),
                         new Claim(Constants.ClaimTypes.Email, "jdoe@gmail.com"),
-
                         new Claim(Constants.ClaimTypes.GivenName, "John"),
                         new Claim(Constants.ClaimTypes.FamilyName, "Doe"),
+
                         new Claim(Constants.ClaimTypes.Role, "ApiReadWidget"),
                         new Claim(Constants.ClaimTypes.Role, "ApiWriteWidget")
                     }
