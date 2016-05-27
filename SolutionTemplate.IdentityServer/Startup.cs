@@ -10,9 +10,6 @@ using System.Security.Cryptography.X509Certificates;
 
 namespace SolutionTemplate.IdentityServer
 {
-    /// <summary>
-    /// To get configuration - https://localhost:44320/identity/.well-known/openid-configuration
-    /// </summary>
     public class Startup
     {
         public void Configuration(IAppBuilder app)
