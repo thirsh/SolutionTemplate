@@ -7,6 +7,7 @@ using Ninject.Web.WebApi.OwinHost;
 using Owin;
 using SharpRepository.Ioc.Ninject;
 using SharpRepository.Repository.Ioc;
+using SolutionTemplate.Core.Claims;
 using SolutionTemplate.Core.ServiceInterfaces;
 using SolutionTemplate.DataAccess;
 using SolutionTemplate.RestApi.Authorization;
@@ -52,9 +53,9 @@ namespace SolutionTemplate.RestApi
 
             var connectionString = ConfigurationManager.ConnectionStrings["SolutionTemplate"].ConnectionString;
 
-            // TODO: http://www.seankenny.me/blog/2014/07/25/custom-owin-iclaimsprincipal-with-ninject/
-            kernel.Bind<ClaimsPrincipal>()
-                .ToMethod(x => (ClaimsPrincipal)HttpContext.Current.User);
+            kernel.Bind<IClaims>()
+                .ToMethod(x => new Claims(HttpContext.Current.GetOwinContext().Authentication.User))
+                .InRequestScope();
 
             kernel.Bind<DbContext>()
                 .To<SolutionTemplateContext>()

@@ -1,8 +1,8 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using SharpRepository.Repository;
+using SolutionTemplate.Core.Claims;
 using System.Collections.Generic;
-using System.Security.Claims;
 using Dm = SolutionTemplate.DataModel;
 
 namespace SolutionTemplate.Service.Test
@@ -21,12 +21,12 @@ namespace SolutionTemplate.Service.Test
                 }
             };
 
-            var principal = new Mock<ClaimsPrincipal>();
+            var claims = new Mock<IClaims>();
             var widgetRepository = new Mock<IRepository<Dm.Widget>>();
 
             widgetRepository.Setup(x => x.GetAll()).Returns(widgets);
 
-            var service = new WidgetService(principal.Object, widgetRepository.Object);
+            var service = new WidgetService(claims.Object, widgetRepository.Object);
 
             var results = service.GetWidgets();
 

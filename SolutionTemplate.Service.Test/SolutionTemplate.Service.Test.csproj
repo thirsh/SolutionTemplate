@@ -66,6 +66,10 @@
       <Project>{dd850c05-75c5-421d-b94c-5df951a79a1a}</Project>
       <Name>SolutionTemplate.BusinessModel</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SolutionTemplate.Core\SolutionTemplate.Core.csproj">
+      <Project>{019231a8-a25d-4b9f-933b-8a8d80309861}</Project>
+      <Name>SolutionTemplate.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SolutionTemplate.DataModel\SolutionTemplate.DataModel.csproj">
       <Project>{b63759fd-95d4-4dbc-ae3c-af3f8aaffccf}</Project>
       <Name>SolutionTemplate.DataModel</Name>

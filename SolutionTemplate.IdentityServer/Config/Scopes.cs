@@ -36,6 +36,7 @@ namespace SolutionTemplate.IdentityServer.Config
                     {
                         new ScopeClaim(Constants.ClaimTypes.Id),
                         new ScopeClaim(Constants.ClaimTypes.Name),
+                        new ScopeClaim(Constants.ClaimTypes.PreferredUserName),
                         new ScopeClaim(Constants.ClaimTypes.GivenName),
                         new ScopeClaim(Constants.ClaimTypes.FamilyName),
                         new ScopeClaim(Constants.ClaimTypes.Email)
