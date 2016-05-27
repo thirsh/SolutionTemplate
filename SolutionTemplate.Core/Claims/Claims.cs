@@ -1,4 +1,5 @@
 ﻿using IdentityModel;
+using System;
 using System.Linq;
 using System.Security.Claims;
 
@@ -13,52 +14,27 @@ namespace SolutionTemplate.Core.Claims
             _claimsPrincipal = claimsPrincipal;
         }
 
-        public int? Id
-        {
-            get
-            {
-                var claim = _claimsPrincipal.Claims.FirstOrDefault(c => c.Type == JwtClaimTypes.Id);
+        public int? Id { get { return GetValue<int?>(JwtClaimTypes.Id); } }
+        public string Username { get { return GetValue<string>(JwtClaimTypes.Name); } }
+        public string FirstName { get { return GetValue<string>(JwtClaimTypes.GivenName); } }
+        public string LastName { get { return GetValue<string>(JwtClaimTypes.FamilyName); } }
+        public string Email { get { return GetValue<string>(JwtClaimTypes.Email); } }
 
-                return claim != null && !string.IsNullOrWhiteSpace(claim.Value)
-                    ? int.Parse(claim.Value)
-                    : (int?)null;
-            }
-        }
-
-        public string Username
+        private T GetValue<T>(string claimType)
         {
-            get
-            {
-                var claim = _claimsPrincipal.Claims.FirstOrDefault(c => c.Type == JwtClaimTypes.Name);
-                return claim != null ? claim.Value : null;
-            }
-        }
+            var claim = _claimsPrincipal.Claims.FirstOrDefault(c => c.Type == claimType);
 
-        public string FirstName
-        {
-            get
+            if (claim == null || string.IsNullOrWhiteSpace(claim.Value))
             {
-                var claim = _claimsPrincipal.Claims.FirstOrDefault(c => c.Type == JwtClaimTypes.GivenName);
-                return claim != null ? claim.Value : null;
+                return default(T);
             }
-        }
 
-        public string LastName
-        {
-            get
-            {
-                var claim = _claimsPrincipal.Claims.FirstOrDefault(c => c.Type == JwtClaimTypes.FamilyName);
-                return claim != null ? claim.Value : null;
-            }
-        }
+            Type t = typeof(T);
+            Type u = Nullable.GetUnderlyingType(t);
 
-        public string Email
-        {
-            get
-            {
-                var claim = _claimsPrincipal.Claims.FirstOrDefault(c => c.Type == JwtClaimTypes.Email);
-                return claim != null ? claim.Value : null;
-            }
+            return (u == null)
+                ? (T)Convert.ChangeType(claim.Value, t)
+                : (T)Convert.ChangeType(claim.Value, u);
         }
     }
 }
