@@ -3,6 +3,7 @@ using Moq;
 using SharpRepository.Repository;
 using SolutionTemplate.BusinessModel;
 using SolutionTemplate.Core.Claims;
+using System;
 using System.Collections.Generic;
 using Dm = SolutionTemplate.DataModel;
 
@@ -18,7 +19,7 @@ namespace SolutionTemplate.Service.Test
             {
                 new Dm.Widget
                 {
-                    Id = (int)System.DateTime.Now.Ticks
+                    Id = (int)DateTime.Now.Ticks
                 }
             };
 
@@ -41,7 +42,7 @@ namespace SolutionTemplate.Service.Test
         [TestMethod]
         public void ServiceShouldGetAWidget()
         {
-            var widgetId = (int)System.DateTime.Now.Ticks;
+            var widgetId = (int)DateTime.Now.Ticks;
 
             var widget = new Dm.Widget
             {

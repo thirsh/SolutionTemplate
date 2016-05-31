@@ -6,30 +6,30 @@ using Thinktecture.IdentityModel.WebApi;
 
 namespace SolutionTemplate.RestApi.Controllers
 {
-    [RoutePrefix("api/Widgets")]
+    [RoutePrefix("api/widgets")]
     public class WidgetsController : ApiController
     {
-        private readonly IWidgetService _widgetsService;
+        private readonly IWidgetService _widgetService;
 
         public WidgetsController(IWidgetService widgetService)
         {
-            _widgetsService = widgetService;
+            _widgetService = widgetService;
         }
 
         [ResourceAuthorize(Action.Read, Resource.Widgets)]
         [Route]
         public IHttpActionResult Get()
         {
-            var widgets = _widgetsService.GetWidgets();
+            var widgets = _widgetService.GetWidgets();
 
             return Ok(widgets);
         }
 
         [ResourceAuthorize(Action.Read, Resource.Widgets)]
-        [Route("{id}")]
+        [Route("{id}", Name = "GetWidget")]
         public IHttpActionResult Get(int id)
         {
-            var widget = _widgetsService.GetWidget(id);
+            var widget = _widgetService.GetWidget(id);
 
             if (widget == null)
             {
@@ -49,9 +49,9 @@ namespace SolutionTemplate.RestApi.Controllers
                 return BadRequest("Widget not included in request.");
             }
 
-            var result = _widgetsService.CreateWidget(widget);
+            var result = _widgetService.CreateWidget(widget);
 
-            return Created(Request.RequestUri + "/" + result.Id, result);
+            return CreatedAtRoute("GetWidget", new { id = result.Id }, result);
         }
     }
 }
