@@ -21,9 +21,27 @@ namespace SolutionTemplate.Service
 
         public List<Widget> GetWidgets()
         {
-            return _widgetRepo
-                .GetAll()
-                .ToBusinessModels();
+            var widgets = _widgetRepo.GetAll();
+
+            return widgets.ToBusinessModels();
+        }
+
+        public Widget GetWidget(int id)
+        {
+            var widget = _widgetRepo.Get(id);
+
+            return widget.ToBusinessModel();
+        }
+
+        public Widget CreateWidget(Widget widget)
+        {
+            var dataWidget = widget.ToDataModel();
+
+            _widgetRepo.Add(dataWidget);
+
+            var result = dataWidget.ToBusinessModel();
+
+            return result;
         }
     }
 }

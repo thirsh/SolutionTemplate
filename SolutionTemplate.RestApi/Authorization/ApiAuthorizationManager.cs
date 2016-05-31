@@ -27,6 +27,9 @@ namespace SolutionTemplate.RestApi.Authorization
                     return Eval(context.Principal.HasClaim(JwtClaimTypes.Role, Role.ApiReadWidget)
                         || context.Principal.HasClaim(JwtClaimTypes.Role, Role.ApiWriteWidget));
 
+                case Action.Write:
+                    return Eval(context.Principal.HasClaim(JwtClaimTypes.Role, Role.ApiWriteWidget));
+
                 default:
                     return Nok();
             }

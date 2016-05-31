@@ -6,5 +6,9 @@ namespace SolutionTemplate.Core.ServiceInterfaces
     public interface IWidgetService
     {
         List<Widget> GetWidgets();
+
+        Widget GetWidget(int id);
+
+        Widget CreateWidget(Widget widget);
     }
 }
