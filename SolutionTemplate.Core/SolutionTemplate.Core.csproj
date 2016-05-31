@@ -55,6 +55,7 @@
   <ItemGroup>
     <Compile Include="Claims\Claims.cs" />
     <Compile Include="Claims\IClaims.cs" />
+    <Compile Include="Exceptions\NotFoundException.cs" />
     <Compile Include="ModelMappings\DoodadMapping.cs" />
     <Compile Include="ModelMappings\WidgetMapping.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

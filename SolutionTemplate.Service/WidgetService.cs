@@ -1,6 +1,7 @@
 ﻿using SharpRepository.Repository;
 using SolutionTemplate.BusinessModel;
 using SolutionTemplate.Core.Claims;
+using SolutionTemplate.Core.Exceptions;
 using SolutionTemplate.Core.ModelMappings;
 using SolutionTemplate.Core.ServiceInterfaces;
 using System.Collections.Generic;
@@ -38,6 +39,25 @@ namespace SolutionTemplate.Service
             var dataWidget = widget.ToDataModel();
 
             _widgetRepo.Add(dataWidget);
+
+            var result = dataWidget.ToBusinessModel();
+
+            return result;
+        }
+
+        public Widget UpdateWidget(int id, Widget widget)
+        {
+            var dataWidget = _widgetRepo.Get(id);
+
+            if (dataWidget == null)
+            {
+                throw new NotFoundException();
+            }
+
+            dataWidget.Name = widget.Name;
+            dataWidget.Active = widget.Active;
+
+            _widgetRepo.Update(dataWidget);
 
             var result = dataWidget.ToBusinessModel();
 

@@ -40,7 +40,7 @@ namespace SolutionTemplate.RestApi.Controllers
         }
 
         [ResourceAuthorize(Action.Write, Resource.Widgets)]
-        [Route()]
+        [Route]
         [HttpPost]
         public IHttpActionResult Post([FromBody]Widget widget)
         {
@@ -52,6 +52,21 @@ namespace SolutionTemplate.RestApi.Controllers
             var result = _widgetService.CreateWidget(widget);
 
             return CreatedAtRoute("GetWidget", new { id = result.Id }, result);
+        }
+
+        [ResourceAuthorize(Action.Write, Resource.Widgets)]
+        [Route("{id}")]
+        [HttpPut]
+        public IHttpActionResult Put(int id, [FromBody]Widget widget)
+        {
+            if (widget == null)
+            {
+                return BadRequest("Widget not included in request.");
+            }
+
+            var result = _widgetService.UpdateWidget(id, widget);
+
+            return Ok(result);
         }
     }
 }
