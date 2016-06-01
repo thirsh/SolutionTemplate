@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [dbo].[Doodads]
 (
-	[Id]		INT				NOT NULL PRIMARY KEY CLUSTERED IDENTITY, 
+	[Id]		INT				NOT NULL PRIMARY KEY CLUSTERED IDENTITY(1, 1), 
     [WidgetId]	INT				NOT NULL, 
     [Name]		VARCHAR(50)		NOT NULL, 
     [Active]	BIT				NOT NULL DEFAULT 0,

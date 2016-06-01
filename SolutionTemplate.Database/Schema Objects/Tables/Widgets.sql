@@ -1,5 +1,5 @@
 ﻿CREATE TABLE [dbo].[Widgets] (
-    [Id]      INT          NOT NULL PRIMARY KEY CLUSTERED IDENTITY,
+    [Id]      INT          NOT NULL PRIMARY KEY CLUSTERED IDENTITY(1, 1),
     [Name]    VARCHAR (50) NOT NULL,
     [Active]  BIT          NOT NULL DEFAULT 0,
     [CreatedUtc] DATETIME     NOT NULL DEFAULT GETUTCDATE(),
