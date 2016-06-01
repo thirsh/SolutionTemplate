@@ -3,9 +3,9 @@ using SolutionTemplate.DataModel;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace SolutionTemplate.Core.ModelMappings
+namespace SolutionTemplate.Core.ModelMaps
 {
-    public static class WidgetPutMapping
+    public static class WidgetPutMap
     {
         public static Widget ToDataModel(this WidgetPut model, Widget widget)
         {

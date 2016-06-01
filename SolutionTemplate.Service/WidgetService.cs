@@ -2,7 +2,7 @@
 using SolutionTemplate.BusinessModel;
 using SolutionTemplate.Core.Claims;
 using SolutionTemplate.Core.Exceptions;
-using SolutionTemplate.Core.ModelMappings;
+using SolutionTemplate.Core.ModelMaps;
 using SolutionTemplate.Core.ServiceInterfaces;
 using SolutionTemplate.DataModel;
 using System.Collections.Generic;

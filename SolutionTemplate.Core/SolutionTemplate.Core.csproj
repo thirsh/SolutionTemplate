@@ -56,12 +56,12 @@
     <Compile Include="Claims\Claims.cs" />
     <Compile Include="Claims\IClaims.cs" />
     <Compile Include="Exceptions\NotFoundException.cs" />
-    <Compile Include="ModelMappings\DoodadPutMapping.cs" />
-    <Compile Include="ModelMappings\DoodadPostMapping.cs" />
-    <Compile Include="ModelMappings\DoodadGetMapping.cs" />
-    <Compile Include="ModelMappings\WidgetPutMapping.cs" />
-    <Compile Include="ModelMappings\WidgetPostMapping.cs" />
-    <Compile Include="ModelMappings\WidgetGetMapping.cs" />
+    <Compile Include="ModelMaps\DoodadPutMap.cs" />
+    <Compile Include="ModelMaps\DoodadPostMap.cs" />
+    <Compile Include="ModelMaps\DoodadGetMap.cs" />
+    <Compile Include="ModelMaps\WidgetPutMap.cs" />
+    <Compile Include="ModelMaps\WidgetPostMap.cs" />
+    <Compile Include="ModelMaps\WidgetGetMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceInterfaces\IWidgetService.cs" />
   </ItemGroup>

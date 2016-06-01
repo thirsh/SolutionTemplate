@@ -3,9 +3,9 @@ using SolutionTemplate.DataModel;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace SolutionTemplate.Core.ModelMappings
+namespace SolutionTemplate.Core.ModelMaps
 {
-    public static class WidgetGetMapping
+    public static class WidgetGetMap
     {
         public static WidgetGet ToBusinessModel(this Widget model)
         {

@@ -3,9 +3,9 @@ using SolutionTemplate.DataModel;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace SolutionTemplate.Core.ModelMappings
+namespace SolutionTemplate.Core.ModelMaps
 {
-    public static class DoodadPutMapping
+    public static class DoodadPutMap
     {
         public static Doodad ToDataModel(this DoodadPut model, Doodad doodad)
         {

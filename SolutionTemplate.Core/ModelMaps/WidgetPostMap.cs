@@ -3,27 +3,27 @@ using SolutionTemplate.DataModel;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace SolutionTemplate.Core.ModelMappings
+namespace SolutionTemplate.Core.ModelMaps
 {
-    public static class DoodadPostMapping
+    public static class WidgetPostMap
     {
-        public static Doodad ToDataModel(this DoodadPost model)
+        public static Widget ToDataModel(this WidgetPost model)
         {
             if (model == null)
             {
                 return null;
             }
 
-            return new Doodad
+            return new Widget
             {
-                WidgetId = model.WidgetId,
-                Widget = model.Widget.ToDataModel(),
                 Name = model.Name,
-                Active = model.Active
+                Active = model.Active,
+
+                Doodads = model.Doodads.ToDataModels()
             };
         }
 
-        public static List<Doodad> ToDataModels(this IEnumerable<DoodadPost> models)
+        public static List<Widget> ToDataModels(this IEnumerable<WidgetPost> models)
         {
             if (models == null)
             {

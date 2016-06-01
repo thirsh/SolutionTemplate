@@ -3,9 +3,9 @@ using SolutionTemplate.DataModel;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace SolutionTemplate.Core.ModelMappings
+namespace SolutionTemplate.Core.ModelMaps
 {
-    public static class DoodadGetMapping
+    public static class DoodadGetMap
     {
         public static DoodadGet ToBusinessModel(this Doodad model)
         {
