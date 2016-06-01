@@ -9,7 +9,7 @@ namespace SolutionTemplate.DataModel
         public virtual Widget Widget { get; set; }
         public string Name { get; set; }
         public bool Active { get; set; }
-        public DateTime Created { get; set; }
-        public DateTime? Updated { get; set; }
+        public DateTime CreatedUtc { get; set; }
+        public DateTime? UpdatedUtc { get; set; }
     }
 }

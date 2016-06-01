@@ -4,37 +4,42 @@ using SolutionTemplate.Core.Claims;
 using SolutionTemplate.Core.Exceptions;
 using SolutionTemplate.Core.ModelMappings;
 using SolutionTemplate.Core.ServiceInterfaces;
+using SolutionTemplate.DataModel;
 using System.Collections.Generic;
-using Dm = SolutionTemplate.DataModel;
 
 namespace SolutionTemplate.Service
 {
     public class WidgetService : IWidgetService
     {
         private readonly IClaims _claims;
-        private readonly IRepository<Dm.Widget, int> _widgetRepo;
+        private readonly IRepository<Widget, int> _widgetRepo;
 
-        public WidgetService(IClaims claims, IRepository<Dm.Widget, int> widgetRepo)
+        public WidgetService(IClaims claims, IRepository<Widget, int> widgetRepo)
         {
             _claims = claims;
             _widgetRepo = widgetRepo;
         }
 
-        public List<Widget> GetWidgets()
+        public List<WidgetGet> GetWidgets()
         {
             var widgets = _widgetRepo.GetAll();
 
             return widgets.ToBusinessModels();
         }
 
-        public Widget GetWidget(int id)
+        public WidgetGet GetWidget(int id)
         {
             var widget = _widgetRepo.Get(id);
+
+            if (widget == null)
+            {
+                throw new NotFoundException();
+            }
 
             return widget.ToBusinessModel();
         }
 
-        public Widget CreateWidget(Widget widget)
+        public WidgetGet CreateWidget(WidgetPost widget)
         {
             var dataWidget = widget.ToDataModel();
 
@@ -45,7 +50,7 @@ namespace SolutionTemplate.Service
             return result;
         }
 
-        public Widget UpdateWidget(int id, Widget widget)
+        public WidgetGet UpdateWidget(int id, WidgetPut widget)
         {
             var dataWidget = _widgetRepo.Get(id);
 
@@ -54,8 +59,7 @@ namespace SolutionTemplate.Service
                 throw new NotFoundException();
             }
 
-            dataWidget.Name = widget.Name;
-            dataWidget.Active = widget.Active;
+            dataWidget = widget.ToDataModel(dataWidget);
 
             _widgetRepo.Update(dataWidget);
 

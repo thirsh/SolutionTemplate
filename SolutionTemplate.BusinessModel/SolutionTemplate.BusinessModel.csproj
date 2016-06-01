@@ -40,9 +40,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Doodad.cs" />
+    <Compile Include="DoodadPut.cs" />
+    <Compile Include="DoodadPost.cs" />
+    <Compile Include="DoodadGet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Widget.cs" />
+    <Compile Include="WidgetPut.cs" />
+    <Compile Include="WidgetPost.cs" />
+    <Compile Include="WidgetGet.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

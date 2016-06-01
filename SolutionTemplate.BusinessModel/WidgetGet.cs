@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace SolutionTemplate.BusinessModel
 {
-    public class Widget
+    public class WidgetGet
     {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -11,6 +11,6 @@ namespace SolutionTemplate.BusinessModel
         public DateTime Created { get; set; }
         public DateTime? Updated { get; set; }
 
-        public ICollection<Doodad> Doodads { get; set; }
+        public ICollection<DoodadGet> Doodads { get; set; }
     }
 }

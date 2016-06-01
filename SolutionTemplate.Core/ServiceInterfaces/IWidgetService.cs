@@ -5,12 +5,12 @@ namespace SolutionTemplate.Core.ServiceInterfaces
 {
     public interface IWidgetService
     {
-        List<Widget> GetWidgets();
+        List<WidgetGet> GetWidgets();
 
-        Widget GetWidget(int id);
+        WidgetGet GetWidget(int id);
 
-        Widget CreateWidget(Widget widget);
+        WidgetGet CreateWidget(WidgetPost widget);
 
-        Widget UpdateWidget(int id, Widget widget);
+        WidgetGet UpdateWidget(int id, WidgetPut widget);
     }
 }

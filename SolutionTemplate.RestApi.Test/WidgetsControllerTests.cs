@@ -13,11 +13,11 @@ namespace SolutionTemplate.RestApi.Test
     public class WidgetsControllerTests
     {
         [TestMethod]
-        public void ControllerShouldGetAllWidgets()
+        public void GetReturnsWidgetsContentResult()
         {
-            var widgets = new List<Widget>
+            var widgets = new List<WidgetGet>
             {
-                new Widget
+                new WidgetGet
                 {
                     Id = (int)DateTime.Now.Ticks,
                 }
@@ -33,7 +33,7 @@ namespace SolutionTemplate.RestApi.Test
 
             widgetService.Verify(x => x.GetWidgets(), Times.Once);
 
-            var okResult = actionResult as OkNegotiatedContentResult<List<Widget>>;
+            var okResult = actionResult as OkNegotiatedContentResult<List<WidgetGet>>;
 
             Assert.IsNotNull(okResult);
             Assert.IsNotNull(okResult.Content);
@@ -42,11 +42,11 @@ namespace SolutionTemplate.RestApi.Test
         }
 
         [TestMethod]
-        public void ControllerShouldGetAWidget()
+        public void GetReturnsWidgetContentResultWithSameId()
         {
             var widgetId = (int)DateTime.Now.Ticks;
 
-            var widget = new Widget
+            var widget = new WidgetGet
             {
                 Id = widgetId
             };
@@ -61,7 +61,7 @@ namespace SolutionTemplate.RestApi.Test
 
             widgetService.Verify(x => x.GetWidget(widgetId), Times.Once);
 
-            var okResult = actionResult as OkNegotiatedContentResult<Widget>;
+            var okResult = actionResult as OkNegotiatedContentResult<WidgetGet>;
 
             Assert.IsNotNull(okResult);
             Assert.IsNotNull(okResult.Content);
@@ -69,15 +69,15 @@ namespace SolutionTemplate.RestApi.Test
         }
 
         [TestMethod]
-        public void ControllerShouldPostAWidget()
+        public void PostSetsLocationHeader()
         {
-            var widget = new Widget
+            var widget = new WidgetPost
             {
                 Name = "New Widget",
                 Active = true
             };
 
-            var resultWidget = new Widget
+            var resultWidget = new WidgetGet
             {
                 Id = (int)DateTime.Now.Ticks,
                 Name = widget.Name,
@@ -94,7 +94,7 @@ namespace SolutionTemplate.RestApi.Test
 
             widgetService.Verify(x => x.CreateWidget(widget), Times.Once);
 
-            var createdResult = actionResult as CreatedAtRouteNegotiatedContentResult<Widget>;
+            var createdResult = actionResult as CreatedAtRouteNegotiatedContentResult<WidgetGet>;
 
             Assert.IsNotNull(createdResult);
             Assert.IsNotNull(createdResult.Content);
@@ -103,6 +103,45 @@ namespace SolutionTemplate.RestApi.Test
 
             Assert.AreEqual(widget.Name, createdResult.Content.Name);
             Assert.AreEqual(widget.Active, createdResult.Content.Active);
+        }
+
+        [TestMethod]
+        public void PutReturnsContentResult()
+        {
+            var widgetId = (int)DateTime.Now.Ticks;
+
+            var widget = new WidgetPut
+            {
+                Id = widgetId,
+                Name = "New Widget",
+                Active = true
+            };
+
+            var resultWidget = new WidgetGet
+            {
+                Id = widgetId,
+                Name = widget.Name,
+                Active = widget.Active
+            };
+
+            var widgetService = new Mock<IWidgetService>();
+
+            widgetService.Setup(x => x.UpdateWidget(widgetId, widget)).Returns(resultWidget);
+
+            var controller = new WidgetsController(widgetService.Object);
+
+            var actionResult = controller.Put(widgetId, widget);
+
+            widgetService.Verify(x => x.UpdateWidget(widgetId, widget), Times.Once);
+
+            var okResult = actionResult as OkNegotiatedContentResult<WidgetGet>;
+
+            Assert.IsNotNull(okResult);
+            Assert.IsNotNull(okResult.Content);
+
+            Assert.AreEqual(widget.Id, okResult.Content.Id);
+            Assert.AreEqual(widget.Name, okResult.Content.Name);
+            Assert.AreEqual(widget.Active, okResult.Content.Active);
         }
     }
 }

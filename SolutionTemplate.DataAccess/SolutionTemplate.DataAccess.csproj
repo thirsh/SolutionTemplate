@@ -49,8 +49,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Configurations\Widget.cs" />
-    <Compile Include="Configurations\Doodad.cs" />
+    <Compile Include="Configurations\WidgetConfig.cs" />
+    <Compile Include="Configurations\DoodadConfig.cs" />
     <Compile Include="SolutionTemplateContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

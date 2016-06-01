@@ -42,7 +42,7 @@ namespace SolutionTemplate.RestApi.Controllers
         [ResourceAuthorize(Action.Write, Resource.Widgets)]
         [Route]
         [HttpPost]
-        public IHttpActionResult Post([FromBody]Widget widget)
+        public IHttpActionResult Post([FromBody]WidgetPost widget)
         {
             if (widget == null)
             {
@@ -57,7 +57,7 @@ namespace SolutionTemplate.RestApi.Controllers
         [ResourceAuthorize(Action.Write, Resource.Widgets)]
         [Route("{id}")]
         [HttpPut]
-        public IHttpActionResult Put(int id, [FromBody]Widget widget)
+        public IHttpActionResult Put(int id, [FromBody]WidgetPut widget)
         {
             if (widget == null)
             {

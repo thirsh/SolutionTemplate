@@ -1,14 +1,14 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using SolutionTemplate.DataModel;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity.ModelConfiguration;
-using Dm = SolutionTemplate.DataModel;
 
 namespace SolutionTemplate.DataAccess.Configurations
 {
-    internal class Widget : EntityTypeConfiguration<Dm.Widget>
+    internal class DoodadConfig : EntityTypeConfiguration<Doodad>
     {
-        public Widget()
+        public DoodadConfig()
         {
-            ToTable("dbo.Widgets");
+            ToTable("dbo.Doodads");
 
             HasKey(m => m.Id);
 
@@ -17,10 +17,6 @@ namespace SolutionTemplate.DataAccess.Configurations
 
             Property(m => m.UpdatedUtc)
                 .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Computed);
-
-            HasMany(m => m.Doodads)
-                .WithRequired(m => m.Widget)
-                .HasForeignKey(m => m.WidgetId);
         }
     }
 }

@@ -3,9 +3,9 @@ using Moq;
 using SharpRepository.Repository;
 using SolutionTemplate.BusinessModel;
 using SolutionTemplate.Core.Claims;
+using SolutionTemplate.DataModel;
 using System;
 using System.Collections.Generic;
-using Dm = SolutionTemplate.DataModel;
 
 namespace SolutionTemplate.Service.Test
 {
@@ -15,16 +15,16 @@ namespace SolutionTemplate.Service.Test
         [TestMethod]
         public void ServiceShouldGetAllWidgets()
         {
-            var widgets = new List<Dm.Widget>
+            var widgets = new List<Widget>
             {
-                new Dm.Widget
+                new Widget
                 {
                     Id = (int)DateTime.Now.Ticks
                 }
             };
 
             var claims = new Mock<IClaims>();
-            var widgetRepository = new Mock<IRepository<Dm.Widget>>();
+            var widgetRepository = new Mock<IRepository<Widget>>();
 
             widgetRepository.Setup(x => x.GetAll()).Returns(widgets);
 
@@ -44,13 +44,13 @@ namespace SolutionTemplate.Service.Test
         {
             var widgetId = (int)DateTime.Now.Ticks;
 
-            var widget = new Dm.Widget
+            var widget = new Widget
             {
                 Id = widgetId
             };
 
             var claims = new Mock<IClaims>();
-            var widgetRepository = new Mock<IRepository<Dm.Widget>>();
+            var widgetRepository = new Mock<IRepository<Widget>>();
 
             widgetRepository.Setup(x => x.Get(widgetId)).Returns(widget);
 
@@ -67,22 +67,59 @@ namespace SolutionTemplate.Service.Test
         [TestMethod]
         public void ServiceShouldCreateAWidget()
         {
-            var widget = new Widget
+            var widget = new WidgetPost
             {
                 Name = "New Widget",
                 Active = true
             };
 
             var claims = new Mock<IClaims>();
-            var widgetRepository = new Mock<IRepository<Dm.Widget>>();
+            var widgetRepository = new Mock<IRepository<Widget>>();
 
             var service = new WidgetService(claims.Object, widgetRepository.Object);
 
             var result = service.CreateWidget(widget);
 
-            widgetRepository.Verify(x => x.Add(It.IsAny<Dm.Widget>()), Times.Once);
+            widgetRepository.Verify(x => x.Add(It.IsAny<Widget>()), Times.Once);
 
             Assert.IsNotNull(result);
+            Assert.AreEqual(widget.Name, result.Name);
+            Assert.AreEqual(widget.Active, result.Active);
+        }
+
+        [TestMethod]
+        public void ServiceShouldUpdateAWidget()
+        {
+            var widgetId = (int)DateTime.Now.Ticks;
+
+            var widget = new WidgetPut
+            {
+                Id = widgetId,
+                Name = "Existing Widget",
+                Active = true
+            };
+
+            var dataWidget = new Widget
+            {
+                Id = widgetId,
+                Name = widget.Name,
+                Active = widget.Active
+            };
+
+            var claims = new Mock<IClaims>();
+            var widgetRepository = new Mock<IRepository<Widget>>();
+
+            widgetRepository.Setup(x => x.Get(widgetId)).Returns(dataWidget);
+
+            var service = new WidgetService(claims.Object, widgetRepository.Object);
+
+            var result = service.UpdateWidget(widgetId, widget);
+
+            widgetRepository.Verify(x => x.Get(widgetId), Times.Once);
+            widgetRepository.Verify(x => x.Update(It.IsAny<Widget>()), Times.Once);
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(widgetId, result.Id);
             Assert.AreEqual(widget.Name, result.Name);
             Assert.AreEqual(widget.Active, result.Active);
         }
