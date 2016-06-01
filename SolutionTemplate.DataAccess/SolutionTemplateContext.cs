@@ -10,6 +10,8 @@ namespace SolutionTemplate.DataAccess
     {
         public SolutionTemplateContext() : base("SolutionTemplate")
         {
+            Database.SetInitializer<SolutionTemplateContext>(null);
+
             Configuration.LazyLoadingEnabled = false;
             Configuration.ProxyCreationEnabled = false;
         }
