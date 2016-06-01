@@ -13,7 +13,7 @@ namespace SolutionTemplate.Service.Test
     public class WidgetServiceTests
     {
         [TestMethod]
-        public void ServiceShouldGetAllWidgets()
+        public void GetAllWidgets()
         {
             var widgets = new List<Widget>
             {
@@ -40,7 +40,7 @@ namespace SolutionTemplate.Service.Test
         }
 
         [TestMethod]
-        public void ServiceShouldGetAWidget()
+        public void GetAWidget()
         {
             var widgetId = (int)DateTime.Now.Ticks;
 
@@ -65,7 +65,7 @@ namespace SolutionTemplate.Service.Test
         }
 
         [TestMethod]
-        public void ServiceShouldCreateAWidget()
+        public void CreateAWidget()
         {
             var widget = new WidgetPost
             {
@@ -88,7 +88,7 @@ namespace SolutionTemplate.Service.Test
         }
 
         [TestMethod]
-        public void ServiceShouldUpdateAWidget()
+        public void UpdateAWidget()
         {
             var widgetId = (int)DateTime.Now.Ticks;
 
@@ -116,12 +116,35 @@ namespace SolutionTemplate.Service.Test
             var result = service.UpdateWidget(widgetId, widget);
 
             widgetRepository.Verify(x => x.Get(widgetId), Times.Once);
-            widgetRepository.Verify(x => x.Update(It.IsAny<Widget>()), Times.Once);
+            widgetRepository.Verify(x => x.Update(dataWidget), Times.Once);
 
             Assert.IsNotNull(result);
             Assert.AreEqual(widgetId, result.Id);
             Assert.AreEqual(widget.Name, result.Name);
             Assert.AreEqual(widget.Active, result.Active);
+        }
+
+        [TestMethod]
+        public void DeleteAWidget()
+        {
+            var widgetId = (int)DateTime.Now.Ticks;
+
+            var widget = new Widget
+            {
+                Id = widgetId,
+            };
+
+            var claims = new Mock<IClaims>();
+            var widgetRepository = new Mock<IRepository<Widget>>();
+
+            widgetRepository.Setup(x => x.Get(widgetId)).Returns(widget);
+
+            var service = new WidgetService(claims.Object, widgetRepository.Object);
+
+            service.DeleteWidget(widgetId);
+
+            widgetRepository.Verify(x => x.Get(widgetId), Times.Once);
+            widgetRepository.Verify(x => x.Delete(widget), Times.Once);
         }
     }
 }

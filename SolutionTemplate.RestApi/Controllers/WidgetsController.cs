@@ -1,6 +1,7 @@
 ﻿using SolutionTemplate.BusinessModel;
 using SolutionTemplate.Core.ServiceInterfaces;
 using SolutionTemplate.RestApi.Authorization;
+using System.Net;
 using System.Web.Http;
 using Thinktecture.IdentityModel.WebApi;
 
@@ -30,11 +31,6 @@ namespace SolutionTemplate.RestApi.Controllers
         public IHttpActionResult Get(int id)
         {
             var widget = _widgetService.GetWidget(id);
-
-            if (widget == null)
-            {
-                return NotFound();
-            }
 
             return Ok(widget);
         }
@@ -67,6 +63,16 @@ namespace SolutionTemplate.RestApi.Controllers
             var result = _widgetService.UpdateWidget(id, widget);
 
             return Ok(result);
+        }
+
+        [ResourceAuthorize(Action.Write, Resource.Widgets)]
+        [Route("{id}")]
+        [HttpDelete]
+        public IHttpActionResult Delete(int id)
+        {
+            _widgetService.DeleteWidget(id);
+
+            return StatusCode(HttpStatusCode.NoContent);
         }
     }
 }

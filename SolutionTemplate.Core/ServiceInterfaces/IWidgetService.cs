@@ -12,5 +12,7 @@ namespace SolutionTemplate.Core.ServiceInterfaces
         WidgetGet CreateWidget(WidgetPost widget);
 
         WidgetGet UpdateWidget(int id, WidgetPut widget);
+
+        void DeleteWidget(int id);
     }
 }

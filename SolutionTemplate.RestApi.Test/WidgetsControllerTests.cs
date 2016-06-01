@@ -5,6 +5,7 @@ using SolutionTemplate.Core.ServiceInterfaces;
 using SolutionTemplate.RestApi.Controllers;
 using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Web.Http.Results;
 
 namespace SolutionTemplate.RestApi.Test
@@ -142,6 +143,25 @@ namespace SolutionTemplate.RestApi.Test
             Assert.AreEqual(widget.Id, okResult.Content.Id);
             Assert.AreEqual(widget.Name, okResult.Content.Name);
             Assert.AreEqual(widget.Active, okResult.Content.Active);
+        }
+
+        [TestMethod]
+        public void DeleteReturnsStatusCodeResult()
+        {
+            var widgetId = (int)DateTime.Now.Ticks;
+
+            var widgetService = new Mock<IWidgetService>();
+
+            var controller = new WidgetsController(widgetService.Object);
+
+            var actionResult = controller.Delete(widgetId);
+
+            widgetService.Verify(x => x.DeleteWidget(widgetId), Times.Once);
+
+            var statusCodeResult = actionResult as StatusCodeResult;
+
+            Assert.IsNotNull(statusCodeResult);
+            Assert.AreEqual(HttpStatusCode.NoContent, statusCodeResult.StatusCode);
         }
     }
 }

@@ -5,6 +5,7 @@ using SolutionTemplate.Core.Exceptions;
 using SolutionTemplate.Core.ModelMaps;
 using SolutionTemplate.Core.ServiceInterfaces;
 using SolutionTemplate.DataModel;
+using System;
 using System.Collections.Generic;
 
 namespace SolutionTemplate.Service
@@ -66,6 +67,18 @@ namespace SolutionTemplate.Service
             var result = dataWidget.ToBusinessModel();
 
             return result;
+        }
+
+        public void DeleteWidget(int id)
+        {
+            var widget = _widgetRepo.Get(id);
+
+            if (widget == null)
+            {
+                throw new NotFoundException();
+            }
+
+            _widgetRepo.Delete(widget);
         }
     }
 }
