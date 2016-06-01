@@ -71,14 +71,12 @@ namespace SolutionTemplate.Service
 
         public void DeleteWidget(int id)
         {
-            var widget = _widgetRepo.Get(id);
-
-            if (widget == null)
+            if (!_widgetRepo.Exists(id))
             {
                 throw new NotFoundException();
             }
 
-            _widgetRepo.Delete(widget);
+            _widgetRepo.Delete(id);
         }
     }
 }

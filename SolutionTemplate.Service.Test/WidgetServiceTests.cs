@@ -129,22 +129,17 @@ namespace SolutionTemplate.Service.Test
         {
             var widgetId = (int)DateTime.Now.Ticks;
 
-            var widget = new Widget
-            {
-                Id = widgetId,
-            };
-
             var claims = new Mock<IClaims>();
             var widgetRepository = new Mock<IRepository<Widget>>();
 
-            widgetRepository.Setup(x => x.Get(widgetId)).Returns(widget);
+            widgetRepository.Setup(x => x.Exists(widgetId)).Returns(true);
 
             var service = new WidgetService(claims.Object, widgetRepository.Object);
 
             service.DeleteWidget(widgetId);
 
-            widgetRepository.Verify(x => x.Get(widgetId), Times.Once);
-            widgetRepository.Verify(x => x.Delete(widget), Times.Once);
+            widgetRepository.Verify(x => x.Exists(widgetId), Times.Once);
+            widgetRepository.Verify(x => x.Delete(widgetId), Times.Once);
         }
     }
 }
