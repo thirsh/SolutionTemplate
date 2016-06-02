@@ -15,7 +15,6 @@ namespace SolutionTemplate.Core.ModelMaps
             }
 
             doodad.WidgetId = model.WidgetId;
-            doodad.Widget = model.Widget.ToDataModel(doodad.Widget);
             doodad.Name = model.Name;
             doodad.Active = model.Active;
 

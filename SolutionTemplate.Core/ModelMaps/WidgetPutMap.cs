@@ -17,8 +17,6 @@ namespace SolutionTemplate.Core.ModelMaps
             widget.Name = model.Name;
             widget.Active = model.Active;
 
-            widget.Doodads = model.Doodads.ToDataModels(widget.Doodads);
-
             return widget;
         }
 

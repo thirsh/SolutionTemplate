@@ -54,13 +54,13 @@ namespace SolutionTemplate.Service.Test
             var claims = new Mock<IClaims>();
             var widgetRepository = new Mock<IRepository<Widget>>();
 
-            widgetRepository.Setup(x => x.Get(widgetId)).Returns(widget);
+            widgetRepository.Setup(x => x.Get(widgetId, It.IsAny<GenericFetchStrategy<Widget>>())).Returns(widget);
 
             var service = new WidgetService(claims.Object, widgetRepository.Object, null);
 
             var result = service.GetWidget(widgetId);
 
-            widgetRepository.Verify(x => x.Get(widgetId), Times.Once);
+            widgetRepository.Verify(x => x.Get(widgetId, It.IsAny<GenericFetchStrategy<Widget>>()), Times.Once);
 
             Assert.IsNotNull(result);
             Assert.AreEqual(widgetId, result.Id);
@@ -111,13 +111,13 @@ namespace SolutionTemplate.Service.Test
             var claims = new Mock<IClaims>();
             var widgetRepository = new Mock<IRepository<Widget>>();
 
-            widgetRepository.Setup(x => x.Get(widgetId, It.IsAny<GenericFetchStrategy<Widget>>())).Returns(dataWidget);
+            widgetRepository.Setup(x => x.Get(widgetId)).Returns(dataWidget);
 
             var service = new WidgetService(claims.Object, widgetRepository.Object, null);
 
             var result = service.UpdateWidget(widgetId, widget);
 
-            widgetRepository.Verify(x => x.Get(widgetId, It.IsAny<GenericFetchStrategy<Widget>>()), Times.Once);
+            widgetRepository.Verify(x => x.Get(widgetId), Times.Once);
             widgetRepository.Verify(x => x.Update(dataWidget), Times.Once);
 
             Assert.IsNotNull(result);

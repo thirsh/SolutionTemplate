@@ -33,7 +33,9 @@ namespace SolutionTemplate.Service
 
         public WidgetGet GetWidget(int id)
         {
-            var widget = _widgetRepo.Get(id);
+            var widget = _widgetRepo.Get(id,
+                new GenericFetchStrategy<Widget>()
+                    .Include(x => x.Doodads));
 
             if (widget == null)
             {
@@ -56,10 +58,7 @@ namespace SolutionTemplate.Service
 
         public WidgetGet UpdateWidget(int id, WidgetPut widget)
         {
-            var dataWidget = _widgetRepo.Get(id,
-                new GenericFetchStrategy<Widget>()
-                    .Include(x => x.Doodads)
-                    .Include(x => x.Doodads.Select(y => y.Widget)));
+            var dataWidget = _widgetRepo.Get(id);
 
             if (dataWidget == null)
             {
