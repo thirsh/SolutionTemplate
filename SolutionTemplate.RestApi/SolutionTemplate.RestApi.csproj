@@ -207,6 +207,7 @@
     <Compile Include="Authorization\Role.cs" />
     <Compile Include="Authorization\Resource.cs" />
     <Compile Include="Authorization\Action.cs" />
+    <Compile Include="Controllers\DoodadsController.cs" />
     <Compile Include="Controllers\WidgetsController.cs" />
     <Compile Include="Authorization\ApiAuthorizationManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

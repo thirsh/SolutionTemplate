@@ -14,6 +14,9 @@ namespace SolutionTemplate.RestApi.Authorization
                 case Resource.Widgets:
                     return AuthorizeWidgets(context);
 
+                case Resource.Doodads:
+                    return AuthorizeWidgets(context);
+
                 default:
                     return Nok();
             }

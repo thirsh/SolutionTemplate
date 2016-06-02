@@ -62,6 +62,7 @@ namespace SolutionTemplate.RestApi
                 .WithConstructorArgument("connectionString", connectionString);
 
             kernel.Bind<IWidgetService>().To<WidgetService>();
+            kernel.Bind<IDoodadService>().To<DoodadService>();
 
             return kernel;
         }
