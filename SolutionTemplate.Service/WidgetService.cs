@@ -1,12 +1,13 @@
 ﻿using SharpRepository.Repository;
+using SharpRepository.Repository.FetchStrategies;
 using SolutionTemplate.BusinessModel;
 using SolutionTemplate.Core.Claims;
 using SolutionTemplate.Core.Exceptions;
 using SolutionTemplate.Core.ModelMaps;
 using SolutionTemplate.Core.ServiceInterfaces;
 using SolutionTemplate.DataModel;
-using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace SolutionTemplate.Service
 {
@@ -14,11 +15,13 @@ namespace SolutionTemplate.Service
     {
         private readonly IClaims _claims;
         private readonly IRepository<Widget, int> _widgetRepo;
+        private readonly IRepository<Doodad, int> _doodadRepo;
 
-        public WidgetService(IClaims claims, IRepository<Widget, int> widgetRepo)
+        public WidgetService(IClaims claims, IRepository<Widget, int> widgetRepo, IRepository<Doodad, int> doodadRepo)
         {
             _claims = claims;
             _widgetRepo = widgetRepo;
+            _doodadRepo = doodadRepo;
         }
 
         public List<WidgetGet> GetWidgets()
@@ -53,7 +56,10 @@ namespace SolutionTemplate.Service
 
         public WidgetGet UpdateWidget(int id, WidgetPut widget)
         {
-            var dataWidget = _widgetRepo.Get(id);
+            var dataWidget = _widgetRepo.Get(id,
+                new GenericFetchStrategy<Widget>()
+                    .Include(x => x.Doodads)
+                    .Include(x => x.Doodads.Select(y => y.Widget)));
 
             if (dataWidget == null)
             {
@@ -75,6 +81,8 @@ namespace SolutionTemplate.Service
             {
                 throw new NotFoundException();
             }
+
+            _doodadRepo.Delete(x => x.WidgetId == id);
 
             _widgetRepo.Delete(id);
         }

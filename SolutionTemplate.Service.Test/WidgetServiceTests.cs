@@ -1,11 +1,13 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using SharpRepository.Repository;
+using SharpRepository.Repository.FetchStrategies;
 using SolutionTemplate.BusinessModel;
 using SolutionTemplate.Core.Claims;
 using SolutionTemplate.DataModel;
 using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 
 namespace SolutionTemplate.Service.Test
 {
@@ -28,7 +30,7 @@ namespace SolutionTemplate.Service.Test
 
             widgetRepository.Setup(x => x.GetAll()).Returns(widgets);
 
-            var service = new WidgetService(claims.Object, widgetRepository.Object);
+            var service = new WidgetService(claims.Object, widgetRepository.Object, null);
 
             var results = service.GetWidgets();
 
@@ -54,7 +56,7 @@ namespace SolutionTemplate.Service.Test
 
             widgetRepository.Setup(x => x.Get(widgetId)).Returns(widget);
 
-            var service = new WidgetService(claims.Object, widgetRepository.Object);
+            var service = new WidgetService(claims.Object, widgetRepository.Object, null);
 
             var result = service.GetWidget(widgetId);
 
@@ -76,7 +78,7 @@ namespace SolutionTemplate.Service.Test
             var claims = new Mock<IClaims>();
             var widgetRepository = new Mock<IRepository<Widget>>();
 
-            var service = new WidgetService(claims.Object, widgetRepository.Object);
+            var service = new WidgetService(claims.Object, widgetRepository.Object, null);
 
             var result = service.CreateWidget(widget);
 
@@ -109,13 +111,13 @@ namespace SolutionTemplate.Service.Test
             var claims = new Mock<IClaims>();
             var widgetRepository = new Mock<IRepository<Widget>>();
 
-            widgetRepository.Setup(x => x.Get(widgetId)).Returns(dataWidget);
+            widgetRepository.Setup(x => x.Get(widgetId, It.IsAny<GenericFetchStrategy<Widget>>())).Returns(dataWidget);
 
-            var service = new WidgetService(claims.Object, widgetRepository.Object);
+            var service = new WidgetService(claims.Object, widgetRepository.Object, null);
 
             var result = service.UpdateWidget(widgetId, widget);
 
-            widgetRepository.Verify(x => x.Get(widgetId), Times.Once);
+            widgetRepository.Verify(x => x.Get(widgetId, It.IsAny<GenericFetchStrategy<Widget>>()), Times.Once);
             widgetRepository.Verify(x => x.Update(dataWidget), Times.Once);
 
             Assert.IsNotNull(result);
@@ -131,14 +133,16 @@ namespace SolutionTemplate.Service.Test
 
             var claims = new Mock<IClaims>();
             var widgetRepository = new Mock<IRepository<Widget>>();
+            var doodadRepository = new Mock<IRepository<Doodad>>();
 
             widgetRepository.Setup(x => x.Exists(widgetId)).Returns(true);
 
-            var service = new WidgetService(claims.Object, widgetRepository.Object);
+            var service = new WidgetService(claims.Object, widgetRepository.Object, doodadRepository.Object);
 
             service.DeleteWidget(widgetId);
 
             widgetRepository.Verify(x => x.Exists(widgetId), Times.Once);
+            doodadRepository.Verify(x => x.Delete(It.IsAny<Expression<Func<Doodad, bool>>>()));
             widgetRepository.Verify(x => x.Delete(widgetId), Times.Once);
         }
     }
