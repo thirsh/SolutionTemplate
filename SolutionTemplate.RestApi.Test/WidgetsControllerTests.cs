@@ -43,6 +43,37 @@ namespace SolutionTemplate.RestApi.Test
         }
 
         [TestMethod]
+        public void GetReturnsSortedWidgetsContentResult()
+        {
+            var widgets = new List<WidgetGet>
+            {
+                new WidgetGet
+                {
+                    Id = (int)DateTime.Now.Ticks,
+                }
+            };
+
+            var sort = "Id";
+
+            var widgetService = new Mock<IWidgetService>();
+
+            widgetService.Setup(x => x.GetWidgets(sort)).Returns(widgets);
+
+            var controller = new WidgetsController(widgetService.Object);
+
+            var actionResult = controller.Get(sort);
+
+            widgetService.Verify(x => x.GetWidgets(sort), Times.Once);
+
+            var okResult = actionResult as OkNegotiatedContentResult<List<WidgetGet>>;
+
+            Assert.IsNotNull(okResult);
+            Assert.IsNotNull(okResult.Content);
+            Assert.AreEqual(widgets.Count, okResult.Content.Count);
+            Assert.AreEqual(widgets[0].Id, okResult.Content[0].Id);
+        }
+
+        [TestMethod]
         public void GetReturnsWidgetContentResultWithSameId()
         {
             var widgetId = (int)DateTime.Now.Ticks;

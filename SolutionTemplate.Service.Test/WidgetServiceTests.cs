@@ -2,11 +2,13 @@
 using Moq;
 using SharpRepository.Repository;
 using SharpRepository.Repository.FetchStrategies;
+using SharpRepository.Repository.Queries;
 using SolutionTemplate.BusinessModel;
 using SolutionTemplate.Core.Claims;
 using SolutionTemplate.DataModel;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 
 namespace SolutionTemplate.Service.Test
@@ -39,6 +41,40 @@ namespace SolutionTemplate.Service.Test
             Assert.IsNotNull(results);
             Assert.AreEqual(widgets.Count, results.Count);
             Assert.AreEqual(widgets[0].Id, results[0].Id);
+        }
+
+        [TestMethod]
+        public void GetAllWidgetsSorted()
+        {
+            var widgets = new List<Widget>
+            {
+                new Widget
+                {
+                    Name = "Widget 2"
+                },
+                new Widget
+                {
+                    Name = "Widget 1"
+                }
+            };
+
+            var sort = "Name";
+
+            var claims = new Mock<IClaims>();
+            var widgetRepository = new Mock<IRepository<Widget>>();
+
+            widgetRepository.Setup(x => x.GetAll(It.IsAny<SortingOptions<Widget>>())).Returns(widgets.OrderBy(x => x.Name));
+
+            var service = new WidgetService(claims.Object, widgetRepository.Object, null);
+
+            var results = service.GetWidgets(sort);
+
+            widgetRepository.Verify(x => x.GetAll(It.IsAny<SortingOptions<Widget>>()), Times.Once);
+
+            Assert.IsNotNull(results);
+            Assert.AreEqual(widgets.Count, results.Count);
+            Assert.AreEqual(widgets[1].Name, results[0].Name);
+            Assert.AreEqual(widgets[0].Name, results[1].Name);
         }
 
         [TestMethod]

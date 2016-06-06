@@ -1,5 +1,6 @@
 ﻿using SharpRepository.Repository;
 using SharpRepository.Repository.FetchStrategies;
+using SharpRepository.Repository.Queries;
 using SolutionTemplate.BusinessModel;
 using SolutionTemplate.Core.Claims;
 using SolutionTemplate.Core.Exceptions;
@@ -7,7 +8,7 @@ using SolutionTemplate.Core.ModelMaps;
 using SolutionTemplate.Core.ServiceInterfaces;
 using SolutionTemplate.DataModel;
 using System.Collections.Generic;
-using System.Linq;
+using System.Threading;
 
 namespace SolutionTemplate.Service
 {
@@ -27,6 +28,28 @@ namespace SolutionTemplate.Service
         public List<WidgetGet> GetWidgets()
         {
             var widgets = _widgetRepo.GetAll();
+
+            return widgets.ToBusinessModels();
+        }
+
+        public List<WidgetGet> GetWidgets(string sort)
+        {
+            var textInfo = Thread.CurrentThread.CurrentCulture.TextInfo;
+
+            var sorting = sort.Split(',');
+
+            //NOTE: business model fields need to be mapped to their data model fields.  might want to do sorting in memory using dynamic Linq
+            var sortingOptions = new SortingOptions<Widget>(textInfo.ToTitleCase(sorting[0].TrimStart('-')), sorting[0].StartsWith("-"));
+
+            if (sorting.Length > 1)
+            {
+                for (int i = 1; i < sorting.Length; i++)
+                {
+                    sortingOptions.ThenSortBy(textInfo.ToTitleCase(sorting[i].TrimStart('-')), sorting[i].StartsWith("-"));
+                }
+            }
+
+            var widgets = _widgetRepo.GetAll(sortingOptions);
 
             return widgets.ToBusinessModels();
         }

@@ -35,6 +35,15 @@ namespace SolutionTemplate.RestApi.Controllers
             return Ok(widget);
         }
 
+        [ResourceAuthorize(Action.Read, Resource.Widgets)]
+        [Route]
+        public IHttpActionResult Get(string sort)
+        {
+            var widgets = _widgetService.GetWidgets(sort);
+
+            return Ok(widgets);
+        }
+
         [ResourceAuthorize(Action.Write, Resource.Widgets)]
         [Route]
         [HttpPost]

@@ -7,6 +7,8 @@ namespace SolutionTemplate.Core.ServiceInterfaces
     {
         List<WidgetGet> GetWidgets();
 
+        List<WidgetGet> GetWidgets(string sort);
+
         WidgetGet GetWidget(int id);
 
         WidgetGet CreateWidget(WidgetPost widget);
