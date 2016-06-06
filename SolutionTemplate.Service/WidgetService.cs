@@ -4,11 +4,11 @@ using SharpRepository.Repository.Queries;
 using SolutionTemplate.BusinessModel;
 using SolutionTemplate.Core.Claims;
 using SolutionTemplate.Core.Exceptions;
+using SolutionTemplate.Core.Extensions;
 using SolutionTemplate.Core.ModelMaps;
 using SolutionTemplate.Core.ServiceInterfaces;
 using SolutionTemplate.DataModel;
 using System.Collections.Generic;
-using System.Threading;
 
 namespace SolutionTemplate.Service
 {
@@ -34,20 +34,7 @@ namespace SolutionTemplate.Service
 
         public List<WidgetGet> GetWidgets(string sort)
         {
-            var sorting = sort.Split(',');
-
-            //TODO: Map business model fields need to their data model equivalents.
-            var sortingOptions = new SortingOptions<Widget>(sorting[0].TrimStart('-'), sorting[0].StartsWith("-"));
-
-            if (sorting.Length > 1)
-            {
-                for (int i = 1; i < sorting.Length; i++)
-                {
-                    sortingOptions.ThenSortBy(sorting[i].TrimStart('-'), sorting[i].StartsWith("-"));
-                }
-            }
-
-            var widgets = _widgetRepo.GetAll(sortingOptions);
+            var widgets = _widgetRepo.GetAll(sort.ToSortingOptions<Widget>());
 
             return widgets.ToBusinessModels();
         }
