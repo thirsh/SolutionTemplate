@@ -19,9 +19,9 @@ namespace SolutionTemplate.RestApi.Controllers
 
         [ResourceAuthorize(Action.Read, Resource.Doodads)]
         [Route("widgets/{widgetId}/doodads")]
-        public IHttpActionResult Get(int widgetId)
+        public IHttpActionResult Find(int widgetId)
         {
-            var doodads = _doodadService.GetDoodads(widgetId);
+            var doodads = _doodadService.FindDoodads(widgetId);
 
             return Ok(doodads);
         }

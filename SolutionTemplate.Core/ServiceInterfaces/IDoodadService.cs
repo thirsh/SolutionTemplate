@@ -5,7 +5,7 @@ namespace SolutionTemplate.Core.ServiceInterfaces
 {
     public interface IDoodadService
     {
-        List<DoodadGet> GetDoodads(int widgetId);
+        List<DoodadGet> FindDoodads(int widgetId);
 
         DoodadGet GetDoodad(int id);
 

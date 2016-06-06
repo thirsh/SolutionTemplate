@@ -14,7 +14,7 @@ namespace SolutionTemplate.RestApi.Test
     public class DoodadsControllerTests
     {
         [TestMethod]
-        public void GetReturnsDoodadsContentResultForWidgetId()
+        public void FindReturnsDoodadsContentResultForWidgetId()
         {
             var widgetId = (int)DateTime.Now.Ticks;
 
@@ -28,13 +28,13 @@ namespace SolutionTemplate.RestApi.Test
 
             var doodadService = new Mock<IDoodadService>();
 
-            doodadService.Setup(x => x.GetDoodads(widgetId)).Returns(doodads);
+            doodadService.Setup(x => x.FindDoodads(widgetId)).Returns(doodads);
 
             var controller = new DoodadsController(doodadService.Object);
 
-            var actionResult = controller.Get(widgetId);
+            var actionResult = controller.Find(widgetId);
 
-            doodadService.Verify(x => x.GetDoodads(widgetId), Times.Once);
+            doodadService.Verify(x => x.FindDoodads(widgetId), Times.Once);
 
             var okResult = actionResult as OkNegotiatedContentResult<List<DoodadGet>>;
 

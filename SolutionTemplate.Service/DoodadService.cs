@@ -21,7 +21,7 @@ namespace SolutionTemplate.Service
             _doodadRepo = doodadRepo;
         }
 
-        public List<DoodadGet> GetDoodads(int widgetId)
+        public List<DoodadGet> FindDoodads(int widgetId)
         {
             var doodads = _doodadRepo.FindAll(x => x.WidgetId == widgetId);
 

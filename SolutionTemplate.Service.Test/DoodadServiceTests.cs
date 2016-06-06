@@ -34,7 +34,7 @@ namespace SolutionTemplate.Service.Test
 
             var service = new DoodadService(claims.Object, doodadRepository.Object);
 
-            var results = service.GetDoodads(widgetId);
+            var results = service.FindDoodads(widgetId);
 
             doodadRepository.Verify(x => x.FindAll(It.IsAny<Expression<Func<Doodad, bool>>>(), null), Times.Once);
 
