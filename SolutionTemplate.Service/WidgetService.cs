@@ -36,8 +36,7 @@ namespace SolutionTemplate.Service
         {
             var sorting = sort.Split(',');
 
-            //NOTE: Business model fields need to be mapped to their data model equivalents.
-            //Might want to do sorting in memory on the business model using dynamic Linq.
+            //TODO: Map business model fields need to be mapped to their data model equivalents.
             var sortingOptions = new SortingOptions<Widget>(sorting[0].TrimStart('-'), sorting[0].StartsWith("-"));
 
             if (sorting.Length > 1)
