@@ -34,18 +34,17 @@ namespace SolutionTemplate.Service
 
         public List<WidgetGet> GetWidgets(string sort)
         {
-            var textInfo = Thread.CurrentThread.CurrentCulture.TextInfo;
-
             var sorting = sort.Split(',');
 
-            //NOTE: business model fields need to be mapped to their data model fields.  might want to do sorting in memory using dynamic Linq
-            var sortingOptions = new SortingOptions<Widget>(textInfo.ToTitleCase(sorting[0].TrimStart('-')), sorting[0].StartsWith("-"));
+            //NOTE: Business model fields need to be mapped to their data model equivalents.
+            //Might want to do sorting in memory on the business model using dynamic Linq.
+            var sortingOptions = new SortingOptions<Widget>(sorting[0].TrimStart('-'), sorting[0].StartsWith("-"));
 
             if (sorting.Length > 1)
             {
                 for (int i = 1; i < sorting.Length; i++)
                 {
-                    sortingOptions.ThenSortBy(textInfo.ToTitleCase(sorting[i].TrimStart('-')), sorting[i].StartsWith("-"));
+                    sortingOptions.ThenSortBy(sorting[i].TrimStart('-'), sorting[i].StartsWith("-"));
                 }
             }
 
