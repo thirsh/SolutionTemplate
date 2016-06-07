@@ -44,7 +44,7 @@ namespace SolutionTemplate.Service.Test
         }
 
         [TestMethod]
-        public void GetADoodad()
+        public void GetDoodad()
         {
             var doodadId = (int)DateTime.Now.Ticks;
 
@@ -69,7 +69,7 @@ namespace SolutionTemplate.Service.Test
         }
 
         [TestMethod]
-        public void CreateADoodad()
+        public void CreateDoodad()
         {
             var doodad = new DoodadPost
             {
@@ -92,7 +92,7 @@ namespace SolutionTemplate.Service.Test
         }
 
         [TestMethod]
-        public void UpdateADoodad()
+        public void UpdateDoodad()
         {
             var doodadId = (int)DateTime.Now.Ticks;
 
@@ -129,7 +129,7 @@ namespace SolutionTemplate.Service.Test
         }
 
         [TestMethod]
-        public void DeleteADoodad()
+        public void DeleteDoodad()
         {
             var doodadId = (int)DateTime.Now.Ticks;
 

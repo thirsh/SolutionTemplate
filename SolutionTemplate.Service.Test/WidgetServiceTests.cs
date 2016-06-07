@@ -8,7 +8,6 @@ using SolutionTemplate.Core.Claims;
 using SolutionTemplate.DataModel;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
 
 namespace SolutionTemplate.Service.Test
@@ -17,7 +16,7 @@ namespace SolutionTemplate.Service.Test
     public class WidgetServiceTests
     {
         [TestMethod]
-        public void GetAllWidgets()
+        public void GetWidgets()
         {
             var widgets = new List<Widget>
             {
@@ -30,13 +29,13 @@ namespace SolutionTemplate.Service.Test
             var claims = new Mock<IClaims>();
             var widgetRepository = new Mock<IRepository<Widget>>();
 
-            widgetRepository.Setup(x => x.GetAll()).Returns(widgets);
+            widgetRepository.Setup(x => x.GetAll(It.IsAny<PagingOptions<Widget>>())).Returns(widgets);
 
             var service = new WidgetService(claims.Object, widgetRepository.Object, null);
 
             var results = service.GetWidgets();
 
-            widgetRepository.Verify(x => x.GetAll(), Times.Once);
+            widgetRepository.Verify(x => x.GetAll(It.IsAny<PagingOptions<Widget>>()), Times.Once);
 
             Assert.IsNotNull(results);
             Assert.AreEqual(widgets.Count, results.Count);
@@ -44,41 +43,7 @@ namespace SolutionTemplate.Service.Test
         }
 
         [TestMethod]
-        public void GetAllWidgetsSorted()
-        {
-            var widgets = new List<Widget>
-            {
-                new Widget
-                {
-                    Name = "Widget 2"
-                },
-                new Widget
-                {
-                    Name = "Widget 1"
-                }
-            };
-
-            var sort = "Name";
-
-            var claims = new Mock<IClaims>();
-            var widgetRepository = new Mock<IRepository<Widget>>();
-
-            widgetRepository.Setup(x => x.GetAll(It.IsAny<SortingOptions<Widget>>())).Returns(widgets.OrderBy(x => x.Name));
-
-            var service = new WidgetService(claims.Object, widgetRepository.Object, null);
-
-            var results = service.GetWidgets(sort);
-
-            widgetRepository.Verify(x => x.GetAll(It.IsAny<SortingOptions<Widget>>()), Times.Once);
-
-            Assert.IsNotNull(results);
-            Assert.AreEqual(widgets.Count, results.Count);
-            Assert.AreEqual(widgets[1].Name, results[0].Name);
-            Assert.AreEqual(widgets[0].Name, results[1].Name);
-        }
-
-        [TestMethod]
-        public void GetAWidget()
+        public void GetWidget()
         {
             var widgetId = (int)DateTime.Now.Ticks;
 
@@ -103,7 +68,7 @@ namespace SolutionTemplate.Service.Test
         }
 
         [TestMethod]
-        public void CreateAWidget()
+        public void CreateWidget()
         {
             var widget = new WidgetPost
             {
@@ -126,7 +91,7 @@ namespace SolutionTemplate.Service.Test
         }
 
         [TestMethod]
-        public void UpdateAWidget()
+        public void UpdateWidget()
         {
             var widgetId = (int)DateTime.Now.Ticks;
 
@@ -163,7 +128,7 @@ namespace SolutionTemplate.Service.Test
         }
 
         [TestMethod]
-        public void DeleteAWidget()
+        public void DeleteWidget()
         {
             var widgetId = (int)DateTime.Now.Ticks;
 

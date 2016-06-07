@@ -26,44 +26,13 @@ namespace SolutionTemplate.RestApi.Test
 
             var widgetService = new Mock<IWidgetService>();
 
-            widgetService.Setup(x => x.GetWidgets()).Returns(widgets);
+            widgetService.Setup(x => x.GetWidgets("Id", 1, 10)).Returns(widgets);
 
             var controller = new WidgetsController(widgetService.Object);
 
             var actionResult = controller.Get();
 
-            widgetService.Verify(x => x.GetWidgets(), Times.Once);
-
-            var okResult = actionResult as OkNegotiatedContentResult<List<WidgetGet>>;
-
-            Assert.IsNotNull(okResult);
-            Assert.IsNotNull(okResult.Content);
-            Assert.AreEqual(widgets.Count, okResult.Content.Count);
-            Assert.AreEqual(widgets[0].Id, okResult.Content[0].Id);
-        }
-
-        [TestMethod]
-        public void GetReturnsSortedWidgetsContentResult()
-        {
-            var widgets = new List<WidgetGet>
-            {
-                new WidgetGet
-                {
-                    Id = (int)DateTime.Now.Ticks,
-                }
-            };
-
-            var sort = "Id";
-
-            var widgetService = new Mock<IWidgetService>();
-
-            widgetService.Setup(x => x.GetWidgets(sort)).Returns(widgets);
-
-            var controller = new WidgetsController(widgetService.Object);
-
-            var actionResult = controller.Get(sort);
-
-            widgetService.Verify(x => x.GetWidgets(sort), Times.Once);
+            widgetService.Verify(x => x.GetWidgets("Id", 1, 10), Times.Once);
 
             var okResult = actionResult as OkNegotiatedContentResult<List<WidgetGet>>;
 

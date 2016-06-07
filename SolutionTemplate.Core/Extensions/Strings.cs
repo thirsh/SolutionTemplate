@@ -21,5 +21,23 @@ namespace SolutionTemplate.Core.Extensions
 
             return sortingOptions;
         }
+
+        public static PagingOptions<T> ToPagingOptions<T>(this string sort, int pageNumber, int pageSize)
+        {
+            var sorting = sort.Split(',');
+
+            //TODO: Map business model fields need to their data model equivalents.
+            var pagingOptions = new PagingOptions<T>(pageNumber, pageSize, sorting[0].TrimStart('-'), sorting[0].StartsWith("-"));
+
+            if (sorting.Length > 1)
+            {
+                for (int i = 1; i < sorting.Length; i++)
+                {
+                    pagingOptions.ThenSortBy(sorting[i].TrimStart('-'), sorting[i].StartsWith("-"));
+                }
+            }
+
+            return pagingOptions;
+        }
     }
 }

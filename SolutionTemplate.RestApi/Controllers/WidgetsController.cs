@@ -18,15 +18,6 @@ namespace SolutionTemplate.RestApi.Controllers
         }
 
         [ResourceAuthorize(Action.Read, Resource.Widgets)]
-        [Route]
-        public IHttpActionResult Get()
-        {
-            var widgets = _widgetService.GetWidgets();
-
-            return Ok(widgets);
-        }
-
-        [ResourceAuthorize(Action.Read, Resource.Widgets)]
         [Route("{id}", Name = "GetWidget")]
         public IHttpActionResult Get(int id)
         {
@@ -37,9 +28,9 @@ namespace SolutionTemplate.RestApi.Controllers
 
         [ResourceAuthorize(Action.Read, Resource.Widgets)]
         [Route]
-        public IHttpActionResult Get(string sort)
+        public IHttpActionResult Get(string sort = "Id", int pageNumber = 1, int pageSize = 10)
         {
-            var widgets = _widgetService.GetWidgets(sort);
+            var widgets = _widgetService.GetWidgets(sort, pageNumber, pageSize);
 
             return Ok(widgets);
         }

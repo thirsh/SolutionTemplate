@@ -5,9 +5,7 @@ namespace SolutionTemplate.Core.ServiceInterfaces
 {
     public interface IWidgetService
     {
-        List<WidgetGet> GetWidgets();
-
-        List<WidgetGet> GetWidgets(string sort);
+        List<WidgetGet> GetWidgets(string sort = "Id", int pageNumber = 1, int pageSize = 10);
 
         WidgetGet GetWidget(int id);
 

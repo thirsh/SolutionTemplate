@@ -1,6 +1,5 @@
 ﻿using SharpRepository.Repository;
 using SharpRepository.Repository.FetchStrategies;
-using SharpRepository.Repository.Queries;
 using SolutionTemplate.BusinessModel;
 using SolutionTemplate.Core.Claims;
 using SolutionTemplate.Core.Exceptions;
@@ -25,16 +24,9 @@ namespace SolutionTemplate.Service
             _doodadRepo = doodadRepo;
         }
 
-        public List<WidgetGet> GetWidgets()
+        public List<WidgetGet> GetWidgets(string sort = "Id", int pageNumber = 1, int pageSize = 10)
         {
-            var widgets = _widgetRepo.GetAll();
-
-            return widgets.ToBusinessModels();
-        }
-
-        public List<WidgetGet> GetWidgets(string sort)
-        {
-            var widgets = _widgetRepo.GetAll(sort.ToSortingOptions<Widget>());
+            var widgets = _widgetRepo.GetAll(sort.ToPagingOptions<Widget>(pageNumber, pageSize));
 
             return widgets.ToBusinessModels();
         }
