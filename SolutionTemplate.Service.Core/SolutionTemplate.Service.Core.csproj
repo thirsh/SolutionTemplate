@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entities\PageResult.cs" />
+    <Compile Include="Exceptions\NotFoundException.cs" />
     <Compile Include="Interfaces\IDoodadService.cs" />
     <Compile Include="Interfaces\IWidgetService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
