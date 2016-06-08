@@ -6,7 +6,7 @@ namespace SolutionTemplate.Service.Core.Exceptions
     [Serializable]
     public class NotFoundException : Exception
     {
-        public NotFoundException() : base()
+        public NotFoundException()
         { }
 
         public NotFoundException(string message) : base(message)

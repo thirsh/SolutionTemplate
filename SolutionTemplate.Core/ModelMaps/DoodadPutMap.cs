@@ -23,13 +23,7 @@ namespace SolutionTemplate.Core.ModelMaps
 
         public static List<Doodad> ToDataModels(this IEnumerable<DoodadPut> models, IEnumerable<Doodad> doodads)
         {
-            if (models == null)
-            {
-                return null;
-            }
-
-            return models
-                .Select(x => x.ToDataModel(doodads.First(w => w.Id == x.Id)))
+            return models?.Select(x => x.ToDataModel(doodads.First(w => w.Id == x.Id)))
                 .ToList();
         }
     }

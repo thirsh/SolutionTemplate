@@ -13,7 +13,7 @@ namespace SolutionTemplate.Service.Core.Extensions
 
             if (sorting.Length > 1)
             {
-                for (int i = 1; i < sorting.Length; i++)
+                for (var i = 1; i < sorting.Length; i++)
                 {
                     sortingOptions.ThenSortBy(sorting[i].TrimStart('-'), sorting[i].StartsWith("-"));
                 }
@@ -31,7 +31,7 @@ namespace SolutionTemplate.Service.Core.Extensions
 
             if (sorting.Length > 1)
             {
-                for (int i = 1; i < sorting.Length; i++)
+                for (var i = 1; i < sorting.Length; i++)
                 {
                     pagingOptions.ThenSortBy(sorting[i].TrimStart('-'), sorting[i].StartsWith("-"));
                 }

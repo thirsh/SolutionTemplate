@@ -20,11 +20,11 @@ namespace SolutionTemplate.RestApi.Entities
 
             PreviousPageLink = pageNumber <= 1
                 ? null
-                : urlHelper.Link(routeName, new { sort = sort, pageNumber = pageNumber - 1, pageSize = pageSize });
+                : urlHelper.Link(routeName, new { sort, pageNumber = pageNumber - 1, pageSize });
 
             NextPageLink = pageNumber >= TotalPages
                 ? null
-                : urlHelper.Link(routeName, new { sort = sort, pageNumber = pageNumber + 1, pageSize = pageSize });
+                : urlHelper.Link(routeName, new { sort, pageNumber = pageNumber + 1, pageSize });
         }
 
         public int PageNumber { get; }

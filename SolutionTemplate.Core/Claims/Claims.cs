@@ -14,23 +14,23 @@ namespace SolutionTemplate.Core.Claims
             _claimsPrincipal = claimsPrincipal;
         }
 
-        public int? Id { get { return GetValue<int?>(JwtClaimTypes.Id); } }
-        public string Username { get { return GetValue<string>(JwtClaimTypes.Name); } }
-        public string FirstName { get { return GetValue<string>(JwtClaimTypes.GivenName); } }
-        public string LastName { get { return GetValue<string>(JwtClaimTypes.FamilyName); } }
-        public string Email { get { return GetValue<string>(JwtClaimTypes.Email); } }
+        public int? Id => GetValue<int?>(JwtClaimTypes.Id);
+        public string Username => GetValue<string>(JwtClaimTypes.Name);
+        public string FirstName => GetValue<string>(JwtClaimTypes.GivenName);
+        public string LastName => GetValue<string>(JwtClaimTypes.FamilyName);
+        public string Email => GetValue<string>(JwtClaimTypes.Email);
 
         private T GetValue<T>(string claimType)
         {
             var claim = _claimsPrincipal.Claims.FirstOrDefault(c => c.Type == claimType);
 
-            if (claim == null || string.IsNullOrWhiteSpace(claim.Value))
+            if (string.IsNullOrWhiteSpace(claim?.Value))
             {
                 return default(T);
             }
 
-            Type t = typeof(T);
-            Type u = Nullable.GetUnderlyingType(t);
+            var t = typeof(T);
+            var u = Nullable.GetUnderlyingType(t);
 
             return (u == null)
                 ? (T)Convert.ChangeType(claim.Value, t)

@@ -9,9 +9,9 @@ namespace SolutionTemplate.Service.Core.Interfaces
 
         DoodadGet GetDoodad(int id);
 
-        DoodadGet CreateDoodad(DoodadPost Doodad);
+        DoodadGet CreateDoodad(DoodadPost doodad);
 
-        DoodadGet UpdateDoodad(int id, DoodadPut Doodad);
+        DoodadGet UpdateDoodad(int id, DoodadPut doodad);
 
         void DeleteDoodad(int id);
     }

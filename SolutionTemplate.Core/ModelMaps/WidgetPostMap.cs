@@ -25,13 +25,7 @@ namespace SolutionTemplate.Core.ModelMaps
 
         public static List<Widget> ToDataModels(this IEnumerable<WidgetPost> models)
         {
-            if (models == null)
-            {
-                return null;
-            }
-
-            return models
-                .Select(x => x.ToDataModel())
+            return models?.Select(x => x.ToDataModel())
                 .ToList();
         }
     }

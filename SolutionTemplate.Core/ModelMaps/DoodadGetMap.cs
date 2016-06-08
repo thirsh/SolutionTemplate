@@ -27,13 +27,7 @@ namespace SolutionTemplate.Core.ModelMaps
 
         public static List<DoodadGet> ToBusinessModels(this IEnumerable<Doodad> models)
         {
-            if (models == null)
-            {
-                return null;
-            }
-
-            return models
-                .Select(x => x.ToBusinessModel())
+            return models?.Select(x => x.ToBusinessModel())
                 .ToList();
         }
     }

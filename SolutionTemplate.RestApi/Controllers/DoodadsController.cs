@@ -37,15 +37,13 @@ namespace SolutionTemplate.RestApi.Controllers
             {
                 return Ok(doodad);
             }
-            else
-            {
-                if (doodad.WidgetId == widgetId)
-                {
-                    return Ok(doodad);
-                }
 
-                return NotFound();
+            if (doodad.WidgetId == widgetId)
+            {
+                return Ok(doodad);
             }
+
+            return NotFound();
         }
 
         [ResourceAuthorize(Action.Write, Resource.Doodads)]

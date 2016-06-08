@@ -22,13 +22,7 @@ namespace SolutionTemplate.Core.ModelMaps
 
         public static List<Widget> ToDataModels(this IEnumerable<WidgetPut> models, IEnumerable<Widget> widgets)
         {
-            if (models == null)
-            {
-                return null;
-            }
-
-            return models
-                .Select(x => x.ToDataModel(widgets.First(w => w.Id == x.Id)))
+            return models?.Select(x => x.ToDataModel(widgets.First(w => w.Id == x.Id)))
                 .ToList();
         }
     }

@@ -60,7 +60,7 @@ namespace SolutionTemplate.RestApi.Test
 
             var controller = new DoodadsController(doodadService.Object);
 
-            var actionResult = controller.Get(doodadId, null);
+            var actionResult = controller.Get(doodadId);
 
             doodadService.Verify(x => x.GetDoodad(doodadId), Times.Once);
 

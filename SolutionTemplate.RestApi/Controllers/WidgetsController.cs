@@ -36,8 +36,6 @@ namespace SolutionTemplate.RestApi.Controllers
         {
             var pageResult = _widgetService.GetWidgets(sort, pageNumber, pageSize);
 
-            var urlHelper = new UrlHelper(Request);
-
             var responseMessage = Request.CreateResponse(HttpStatusCode.OK, pageResult.Items);
 
             responseMessage.Headers.Add("X-Pagination", JsonConvert.SerializeObject(

@@ -26,9 +26,7 @@ namespace SolutionTemplate.IdentityServer
                         .UseInMemoryClients(Clients.Get())
                         .UseInMemoryScopes(Scopes.Get()),
 
-                    SigningCertificate = new X509Certificate2(
-                        string.Format(@"{0}\bin\Certificates\idsrv3test.pfx",
-                        AppDomain.CurrentDomain.BaseDirectory), "idsrv3test"),
+                    SigningCertificate = new X509Certificate2($@"{AppDomain.CurrentDomain.BaseDirectory}\bin\Certificates\idsrv3test.pfx", "idsrv3test"),
 
                     RequireSsl = bool.Parse(ConfigurationManager.AppSettings["RequireSsl"])
                 });

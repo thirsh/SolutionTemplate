@@ -16,7 +16,7 @@ namespace SolutionTemplate.Service.Core.Entities
         public int PageNumber { get; }
         public int PageSize { get; }
         public int TotalCount { get; }
-        public int TotalPages { get { return PageSize == 0 ? 0 : (int)Math.Ceiling((double)TotalCount / PageSize); } }
+        public int TotalPages => PageSize == 0 ? 0 : (int)Math.Ceiling((double)TotalCount / PageSize);
         public List<T> Items { get; }
     }
 }
