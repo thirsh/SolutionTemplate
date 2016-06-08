@@ -1,6 +1,6 @@
 ﻿using SharpRepository.Repository.Queries;
 
-namespace SolutionTemplate.Core.Extensions
+namespace SolutionTemplate.Service.Core.Extensions
 {
     public static class StringExtensions
     {

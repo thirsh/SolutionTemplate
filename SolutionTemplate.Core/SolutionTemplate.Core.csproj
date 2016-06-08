@@ -42,10 +42,6 @@
       <HintPath>..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="SharpRepository.Repository, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\SharpRepository.Repository.1.4.7.2\lib\net40\SharpRepository.Repository.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.IdentityModel" />
@@ -59,7 +55,6 @@
   <ItemGroup>
     <Compile Include="Claims\Claims.cs" />
     <Compile Include="Claims\IClaims.cs" />
-    <Compile Include="Extensions\Strings.cs" />
     <Compile Include="ModelMaps\DoodadPutMap.cs" />
     <Compile Include="ModelMaps\DoodadPostMap.cs" />
     <Compile Include="ModelMaps\DoodadGetMap.cs" />
