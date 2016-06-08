@@ -1,11 +1,12 @@
 ﻿using SolutionTemplate.BusinessModel;
+using SolutionTemplate.Core.Entities;
 using System.Collections.Generic;
 
 namespace SolutionTemplate.Core.ServiceInterfaces
 {
     public interface IWidgetService
     {
-        List<WidgetGet> GetWidgets(string sort = "Id", int pageNumber = 1, int pageSize = 10);
+        PageResult<WidgetGet> GetWidgets(string sort = "Id", int pageNumber = 1, int pageSize = 10);
 
         WidgetGet GetWidget(int id);
 

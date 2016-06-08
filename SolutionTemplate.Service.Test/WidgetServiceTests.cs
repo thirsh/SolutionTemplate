@@ -5,6 +5,7 @@ using SharpRepository.Repository.FetchStrategies;
 using SharpRepository.Repository.Queries;
 using SolutionTemplate.BusinessModel;
 using SolutionTemplate.Core.Claims;
+using SolutionTemplate.Core.Entities;
 using SolutionTemplate.DataModel;
 using System;
 using System.Collections.Generic;
@@ -33,13 +34,14 @@ namespace SolutionTemplate.Service.Test
 
             var service = new WidgetService(claims.Object, widgetRepository.Object, null);
 
-            var results = service.GetWidgets();
+            var pageResult = service.GetWidgets();
 
             widgetRepository.Verify(x => x.GetAll(It.IsAny<PagingOptions<Widget>>()), Times.Once);
+            widgetRepository.Verify(x => x.Count(), Times.Once);
 
-            Assert.IsNotNull(results);
-            Assert.AreEqual(widgets.Count, results.Count);
-            Assert.AreEqual(widgets[0].Id, results[0].Id);
+            Assert.IsNotNull(pageResult);
+            Assert.AreEqual(widgets.Count, pageResult.Items.Count);
+            Assert.AreEqual(widgets[0].Id, pageResult.Items[0].Id);
         }
 
         [TestMethod]

@@ -1,12 +1,16 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using SolutionTemplate.BusinessModel;
+using SolutionTemplate.Core.Entities;
 using SolutionTemplate.Core.ServiceInterfaces;
 using SolutionTemplate.RestApi.Controllers;
 using System;
 using System.Collections.Generic;
 using System.Net;
+using System.Net.Http;
+using System.Web.Http;
 using System.Web.Http.Results;
+using System.Web.Http.Routing;
 
 namespace SolutionTemplate.RestApi.Test
 {
@@ -16,30 +20,39 @@ namespace SolutionTemplate.RestApi.Test
         [TestMethod]
         public void GetReturnsWidgetsContentResult()
         {
-            var widgets = new List<WidgetGet>
+            var pageResult = new PageResult<WidgetGet>
             {
-                new WidgetGet
+                Items = new List<WidgetGet>
                 {
-                    Id = (int)DateTime.Now.Ticks,
+                    new WidgetGet
+                    {
+                        Id = (int)DateTime.Now.Ticks
+                    }
                 }
             };
 
             var widgetService = new Mock<IWidgetService>();
 
-            widgetService.Setup(x => x.GetWidgets("Id", 1, 10)).Returns(widgets);
+            widgetService.Setup(x => x.GetWidgets("Id", 1, 10)).Returns(pageResult);
 
             var controller = new WidgetsController(widgetService.Object);
 
-            var actionResult = controller.Get();
+            controller.Request = new HttpRequestMessage { RequestUri = new Uri("http://localhost/api/widgets") };
+            controller.Configuration = new HttpConfiguration();
+            controller.Configuration.Routes.MapHttpRoute("GetWidgets", "api/{controller}");
+            controller.RequestContext.RouteData = new HttpRouteData(new HttpRoute(), new HttpRouteValueDictionary { { "controller", "widgets" } });
+
+            var responseMessage = controller.Get();
 
             widgetService.Verify(x => x.GetWidgets("Id", 1, 10), Times.Once);
 
-            var okResult = actionResult as OkNegotiatedContentResult<List<WidgetGet>>;
+            List<WidgetGet> responseWidgets;
 
-            Assert.IsNotNull(okResult);
-            Assert.IsNotNull(okResult.Content);
-            Assert.AreEqual(widgets.Count, okResult.Content.Count);
-            Assert.AreEqual(widgets[0].Id, okResult.Content[0].Id);
+            Assert.IsNotNull(responseMessage);
+            Assert.IsNotNull(responseMessage.Headers.Contains("X-Pagination"));
+            Assert.IsTrue(responseMessage.TryGetContentValue(out responseWidgets));
+            Assert.AreEqual(pageResult.Items.Count, responseWidgets.Count);
+            Assert.AreEqual(pageResult.Items[0].Id, responseWidgets[0].Id);
         }
 
         [TestMethod]

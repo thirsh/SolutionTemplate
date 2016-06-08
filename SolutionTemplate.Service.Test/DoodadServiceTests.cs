@@ -15,7 +15,7 @@ namespace SolutionTemplate.Service.Test
     public class DoodadServiceTests
     {
         [TestMethod]
-        public void GetDoodads()
+        public void FindDoodads()
         {
             var widgetId = (int)DateTime.Now.Ticks;
 

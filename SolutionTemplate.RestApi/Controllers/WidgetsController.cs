@@ -1,8 +1,11 @@
-﻿using SolutionTemplate.BusinessModel;
+﻿using Newtonsoft.Json;
+using SolutionTemplate.BusinessModel;
 using SolutionTemplate.Core.ServiceInterfaces;
 using SolutionTemplate.RestApi.Authorization;
 using System.Net;
+using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Routing;
 using Thinktecture.IdentityModel.WebApi;
 
 namespace SolutionTemplate.RestApi.Controllers
@@ -27,12 +30,32 @@ namespace SolutionTemplate.RestApi.Controllers
         }
 
         [ResourceAuthorize(Action.Read, Resource.Widgets)]
-        [Route]
-        public IHttpActionResult Get(string sort = "Id", int pageNumber = 1, int pageSize = 10)
+        [Route(Name = "GetWidgets")]
+        public HttpResponseMessage Get(string sort = "Id", int pageNumber = 1, int pageSize = 10)
         {
-            var widgets = _widgetService.GetWidgets(sort, pageNumber, pageSize);
+            var pageResult = _widgetService.GetWidgets(sort, pageNumber, pageSize);
 
-            return Ok(widgets);
+            var urlHelper = new UrlHelper(Request);
+
+            var paginationHeader = new
+            {
+                pageNumber = pageNumber,
+                pageSize = pageSize,
+                previousPageLink = pageNumber <= 1
+                    ? null
+                    : urlHelper.Link("GetWidgets", new { sort = sort, pageNumber = pageNumber - 1, pageSize = pageSize }),
+                nextPageLink = pageNumber >= pageResult.TotalPages
+                    ? null
+                    : urlHelper.Link("GetWidgets", new { sort = sort, pageNumber = pageNumber + 1, pageSize = pageSize }),
+                totalCount = pageResult.TotalCount,
+                totalPages = pageResult.TotalPages
+            };
+
+            var responseMessage = Request.CreateResponse(HttpStatusCode.OK, pageResult.Items);
+
+            responseMessage.Headers.Add("X-Pagination", JsonConvert.SerializeObject(paginationHeader));
+
+            return responseMessage;
         }
 
         [ResourceAuthorize(Action.Write, Resource.Widgets)]
