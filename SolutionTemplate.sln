@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SolutionTemplate.RestApi", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SolutionTemplate.RestApi.Test", "SolutionTemplate.RestApi.Test\SolutionTemplate.RestApi.Test.csproj", "{59FDD0B9-5654-4D6E-A2A4-97B1118CCF15}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SolutionTemplate.Service.Core", "SolutionTemplate.Service.Core\SolutionTemplate.Service.Core.csproj", "{8F07BA57-0115-4506-BFBA-B4B519619235}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -71,6 +73,10 @@ Global
 		{59FDD0B9-5654-4D6E-A2A4-97B1118CCF15}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{59FDD0B9-5654-4D6E-A2A4-97B1118CCF15}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{59FDD0B9-5654-4D6E-A2A4-97B1118CCF15}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F07BA57-0115-4506-BFBA-B4B519619235}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F07BA57-0115-4506-BFBA-B4B519619235}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F07BA57-0115-4506-BFBA-B4B519619235}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F07BA57-0115-4506-BFBA-B4B519619235}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

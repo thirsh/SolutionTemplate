@@ -2,12 +2,12 @@
 using SharpRepository.Repository.FetchStrategies;
 using SolutionTemplate.BusinessModel;
 using SolutionTemplate.Core.Claims;
-using SolutionTemplate.Core.Entities;
 using SolutionTemplate.Core.Exceptions;
 using SolutionTemplate.Core.Extensions;
 using SolutionTemplate.Core.ModelMaps;
-using SolutionTemplate.Core.ServiceInterfaces;
 using SolutionTemplate.DataModel;
+using SolutionTemplate.Service.Core.Entities;
+using SolutionTemplate.Service.Core.Interfaces;
 
 namespace SolutionTemplate.Service
 {

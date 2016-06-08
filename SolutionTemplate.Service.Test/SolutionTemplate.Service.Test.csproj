@@ -79,6 +79,10 @@
       <Project>{b63759fd-95d4-4dbc-ae3c-af3f8aaffccf}</Project>
       <Name>SolutionTemplate.DataModel</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SolutionTemplate.Service.Core\SolutionTemplate.Service.Core.csproj">
+      <Project>{8F07BA57-0115-4506-BFBA-B4B519619235}</Project>
+      <Name>SolutionTemplate.Service.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SolutionTemplate.Service\SolutionTemplate.Service.csproj">
       <Project>{5e104287-dc01-4091-9533-af6e983253b4}</Project>
       <Name>SolutionTemplate.Service</Name>

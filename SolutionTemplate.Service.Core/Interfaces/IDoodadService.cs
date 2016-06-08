@@ -1,7 +1,7 @@
 ﻿using SolutionTemplate.BusinessModel;
 using System.Collections.Generic;
 
-namespace SolutionTemplate.Core.ServiceInterfaces
+namespace SolutionTemplate.Service.Core.Interfaces
 {
     public interface IDoodadService
     {

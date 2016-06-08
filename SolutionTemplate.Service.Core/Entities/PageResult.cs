@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace SolutionTemplate.Core.Entities
+namespace SolutionTemplate.Service.Core.Entities
 {
     public class PageResult<T>
     {

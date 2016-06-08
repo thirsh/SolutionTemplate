@@ -61,6 +61,10 @@
       <Project>{b63759fd-95d4-4dbc-ae3c-af3f8aaffccf}</Project>
       <Name>SolutionTemplate.DataModel</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SolutionTemplate.Service.Core\SolutionTemplate.Service.Core.csproj">
+      <Project>{8f07ba57-0115-4506-bfba-b4b519619235}</Project>
+      <Name>SolutionTemplate.Service.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

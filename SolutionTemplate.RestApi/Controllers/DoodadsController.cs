@@ -1,6 +1,6 @@
 ﻿using SolutionTemplate.BusinessModel;
-using SolutionTemplate.Core.ServiceInterfaces;
 using SolutionTemplate.RestApi.Authorization;
+using SolutionTemplate.Service.Core.Interfaces;
 using System.Net;
 using System.Web.Http;
 using Thinktecture.IdentityModel.WebApi;

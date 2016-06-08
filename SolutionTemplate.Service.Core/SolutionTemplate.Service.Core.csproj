@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{019231A8-A25D-4B9F-933B-8A8D80309861}</ProjectGuid>
+    <ProjectGuid>{8F07BA57-0115-4506-BFBA-B4B519619235}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SolutionTemplate.Core</RootNamespace>
-    <AssemblyName>SolutionTemplate.Core</AssemblyName>
+    <RootNamespace>SolutionTemplate.Service.Core</RootNamespace>
+    <AssemblyName>SolutionTemplate.Service.Core</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,25 +30,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="IdentityModel, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\IdentityModel.1.11.0\lib\net45\IdentityModel.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
-      <HintPath>..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="SharpRepository.Repository, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\SharpRepository.Repository.1.4.7.2\lib\net40\SharpRepository.Repository.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.IdentityModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -57,16 +40,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Claims\Claims.cs" />
-    <Compile Include="Claims\IClaims.cs" />
-    <Compile Include="Exceptions\NotFoundException.cs" />
-    <Compile Include="Extensions\Strings.cs" />
-    <Compile Include="ModelMaps\DoodadPutMap.cs" />
-    <Compile Include="ModelMaps\DoodadPostMap.cs" />
-    <Compile Include="ModelMaps\DoodadGetMap.cs" />
-    <Compile Include="ModelMaps\WidgetPutMap.cs" />
-    <Compile Include="ModelMaps\WidgetPostMap.cs" />
-    <Compile Include="ModelMaps\WidgetGetMap.cs" />
+    <Compile Include="Entities\PageResult.cs" />
+    <Compile Include="Interfaces\IDoodadService.cs" />
+    <Compile Include="Interfaces\IWidgetService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -74,16 +50,7 @@
       <Project>{dd850c05-75c5-421d-b94c-5df951a79a1a}</Project>
       <Name>SolutionTemplate.BusinessModel</Name>
     </ProjectReference>
-    <ProjectReference Include="..\SolutionTemplate.DataModel\SolutionTemplate.DataModel.csproj">
-      <Project>{b63759fd-95d4-4dbc-ae3c-af3f8aaffccf}</Project>
-      <Name>SolutionTemplate.DataModel</Name>
-    </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="app.config" />
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -5,7 +5,6 @@ using SharpRepository.Repository.FetchStrategies;
 using SharpRepository.Repository.Queries;
 using SolutionTemplate.BusinessModel;
 using SolutionTemplate.Core.Claims;
-using SolutionTemplate.Core.Entities;
 using SolutionTemplate.DataModel;
 using System;
 using System.Collections.Generic;

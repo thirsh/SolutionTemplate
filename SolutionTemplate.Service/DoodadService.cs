@@ -4,8 +4,8 @@ using SolutionTemplate.BusinessModel;
 using SolutionTemplate.Core.Claims;
 using SolutionTemplate.Core.Exceptions;
 using SolutionTemplate.Core.ModelMaps;
-using SolutionTemplate.Core.ServiceInterfaces;
 using SolutionTemplate.DataModel;
+using SolutionTemplate.Service.Core.Interfaces;
 using System.Collections.Generic;
 
 namespace SolutionTemplate.Service

@@ -1,8 +1,8 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using SolutionTemplate.BusinessModel;
-using SolutionTemplate.Core.ServiceInterfaces;
 using SolutionTemplate.RestApi.Controllers;
+using SolutionTemplate.Service.Core.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Net;

@@ -1,8 +1,8 @@
 ﻿using Newtonsoft.Json;
 using SolutionTemplate.BusinessModel;
-using SolutionTemplate.Core.ServiceInterfaces;
 using SolutionTemplate.RestApi.Authorization;
 using SolutionTemplate.RestApi.Entities;
+using SolutionTemplate.Service.Core.Interfaces;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;

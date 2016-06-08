@@ -1,8 +1,7 @@
 ﻿using SolutionTemplate.BusinessModel;
-using SolutionTemplate.Core.Entities;
-using System.Collections.Generic;
+using SolutionTemplate.Service.Core.Entities;
 
-namespace SolutionTemplate.Core.ServiceInterfaces
+namespace SolutionTemplate.Service.Core.Interfaces
 {
     public interface IWidgetService
     {
