@@ -29,15 +29,7 @@ namespace SolutionTemplate.Service
             var widgets = _widgetRepo.GetAll(sort.ToPagingOptions<Widget>(pageNumber, pageSize));
             var totalCount = _widgetRepo.Count();
 
-            var pageResult = new PageResult<WidgetGet>
-            {
-                PageNumber = pageNumber,
-                PageSize = pageSize,
-                TotalCount = totalCount,
-                Items = widgets.ToBusinessModels()
-            };
-
-            return pageResult;
+            return new PageResult<WidgetGet>(pageNumber, pageSize, totalCount, widgets.ToBusinessModels());
         }
 
         public WidgetGet GetWidget(int id)

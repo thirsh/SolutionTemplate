@@ -20,16 +20,15 @@ namespace SolutionTemplate.RestApi.Test
         [TestMethod]
         public void GetReturnsWidgetsContentResult()
         {
-            var pageResult = new PageResult<WidgetGet>
+            var widgets = new List<WidgetGet>
             {
-                Items = new List<WidgetGet>
+                new WidgetGet
                 {
-                    new WidgetGet
-                    {
-                        Id = (int)DateTime.Now.Ticks
-                    }
+                    Id = (int)DateTime.Now.Ticks
                 }
             };
+
+            var pageResult = new PageResult<WidgetGet>(1, 10, 20, widgets);
 
             var widgetService = new Mock<IWidgetService>();
 
@@ -49,7 +48,8 @@ namespace SolutionTemplate.RestApi.Test
             List<WidgetGet> responseWidgets;
 
             Assert.IsNotNull(responseMessage);
-            Assert.IsNotNull(responseMessage.Headers.Contains("X-Pagination"));
+            Assert.IsTrue(responseMessage.IsSuccessStatusCode);
+            Assert.IsTrue(responseMessage.Headers.Contains("X-Pagination"));
             Assert.IsTrue(responseMessage.TryGetContentValue(out responseWidgets));
             Assert.AreEqual(pageResult.Items.Count, responseWidgets.Count);
             Assert.AreEqual(pageResult.Items[0].Id, responseWidgets[0].Id);
