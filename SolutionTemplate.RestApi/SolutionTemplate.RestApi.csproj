@@ -63,7 +63,6 @@
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.IdentityModel.Protocol.Extensions, Version=1.0.2.33, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.IdentityModel.Protocol.Extensions.1.0.2.206221351\lib\net45\Microsoft.IdentityModel.Protocol.Extensions.dll</HintPath>
       <Private>True</Private>
@@ -146,16 +145,8 @@
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Runtime.Caching" />
-    <Reference Include="System.Web.DynamicData" />
-    <Reference Include="System.Web.Entity" />
-    <Reference Include="System.Web.ApplicationServices" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System" />
-    <Reference Include="System.Data" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
       <Private>True</Private>
@@ -168,13 +159,8 @@
       <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
-    <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
-    <Reference Include="System.Web.Services" />
-    <Reference Include="System.EnterpriseServices" />
     <Reference Include="Thinktecture.IdentityModel.Core, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Thinktecture.IdentityModel.Core.1.4.0\lib\net45\Thinktecture.IdentityModel.Core.dll</HintPath>
       <Private>True</Private>
@@ -226,10 +212,6 @@
     <ProjectReference Include="..\SolutionTemplate.DataAccess\SolutionTemplate.DataAccess.csproj">
       <Project>{2746bc01-19d6-4023-8e8f-e63039ddeaa1}</Project>
       <Name>SolutionTemplate.DataAccess</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SolutionTemplate.DataModel\SolutionTemplate.DataModel.csproj">
-      <Project>{b63759fd-95d4-4dbc-ae3c-af3f8aaffccf}</Project>
-      <Name>SolutionTemplate.DataModel</Name>
     </ProjectReference>
     <ProjectReference Include="..\SolutionTemplate.Service.Core\SolutionTemplate.Service.Core.csproj">
       <Project>{8f07ba57-0115-4506-bfba-b4b519619235}</Project>
