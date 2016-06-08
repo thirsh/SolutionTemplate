@@ -1,12 +1,10 @@
-﻿using Newtonsoft.Json;
-using SolutionTemplate.BusinessModel;
+﻿using SolutionTemplate.BusinessModel;
 using SolutionTemplate.RestApi.Authorization;
 using SolutionTemplate.RestApi.Entities;
 using SolutionTemplate.Service.Core.Interfaces;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using System.Web.Http.Routing;
 using Thinktecture.IdentityModel.WebApi;
 
 namespace SolutionTemplate.RestApi.Controllers
@@ -38,8 +36,8 @@ namespace SolutionTemplate.RestApi.Controllers
 
             var responseMessage = Request.CreateResponse(HttpStatusCode.OK, pageResult.Items);
 
-            responseMessage.Headers.Add("X-Pagination", JsonConvert.SerializeObject(
-                new PaginationHeader(Request, "GetWidgets", sort, pageNumber, pageSize, pageResult.TotalCount)));
+            responseMessage.Headers.Add("X-Pagination",
+                new PaginationHeader(Request, "GetWidgets", sort, pageNumber, pageSize, pageResult.TotalCount).JsonSerialize());
 
             return responseMessage;
         }
