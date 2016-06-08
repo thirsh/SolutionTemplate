@@ -2,6 +2,7 @@
 using SolutionTemplate.BusinessModel;
 using SolutionTemplate.Core.ServiceInterfaces;
 using SolutionTemplate.RestApi.Authorization;
+using SolutionTemplate.RestApi.Entities;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
@@ -37,23 +38,10 @@ namespace SolutionTemplate.RestApi.Controllers
 
             var urlHelper = new UrlHelper(Request);
 
-            var paginationHeader = new
-            {
-                pageNumber = pageNumber,
-                pageSize = pageSize,
-                previousPageLink = pageNumber <= 1
-                    ? null
-                    : urlHelper.Link("GetWidgets", new { sort = sort, pageNumber = pageNumber - 1, pageSize = pageSize }),
-                nextPageLink = pageNumber >= pageResult.TotalPages
-                    ? null
-                    : urlHelper.Link("GetWidgets", new { sort = sort, pageNumber = pageNumber + 1, pageSize = pageSize }),
-                totalCount = pageResult.TotalCount,
-                totalPages = pageResult.TotalPages
-            };
-
             var responseMessage = Request.CreateResponse(HttpStatusCode.OK, pageResult.Items);
 
-            responseMessage.Headers.Add("X-Pagination", JsonConvert.SerializeObject(paginationHeader));
+            responseMessage.Headers.Add("X-Pagination", JsonConvert.SerializeObject(
+                new PaginationHeader(Request, "GetWidgets", sort, pageNumber, pageSize, pageResult.TotalCount)));
 
             return responseMessage;
         }
