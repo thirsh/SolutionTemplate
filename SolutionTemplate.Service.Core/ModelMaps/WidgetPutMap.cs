@@ -3,7 +3,7 @@ using SolutionTemplate.DataModel;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace SolutionTemplate.Core.ModelMaps
+namespace SolutionTemplate.Service.Core.ModelMaps
 {
     public static class WidgetPutMap
     {

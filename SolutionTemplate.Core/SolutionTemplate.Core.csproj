@@ -44,23 +44,7 @@
   <ItemGroup>
     <Compile Include="Claims\Claims.cs" />
     <Compile Include="Claims\IClaims.cs" />
-    <Compile Include="ModelMaps\DoodadPutMap.cs" />
-    <Compile Include="ModelMaps\DoodadPostMap.cs" />
-    <Compile Include="ModelMaps\DoodadGetMap.cs" />
-    <Compile Include="ModelMaps\WidgetPutMap.cs" />
-    <Compile Include="ModelMaps\WidgetPostMap.cs" />
-    <Compile Include="ModelMaps\WidgetGetMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\SolutionTemplate.BusinessModel\SolutionTemplate.BusinessModel.csproj">
-      <Project>{dd850c05-75c5-421d-b94c-5df951a79a1a}</Project>
-      <Name>SolutionTemplate.BusinessModel</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SolutionTemplate.DataModel\SolutionTemplate.DataModel.csproj">
-      <Project>{b63759fd-95d4-4dbc-ae3c-af3f8aaffccf}</Project>
-      <Name>SolutionTemplate.DataModel</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

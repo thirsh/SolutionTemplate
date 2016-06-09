@@ -2,10 +2,10 @@
 using SharpRepository.Repository.FetchStrategies;
 using SolutionTemplate.BusinessModel;
 using SolutionTemplate.Core.Claims;
-using SolutionTemplate.Core.ModelMaps;
 using SolutionTemplate.DataModel;
 using SolutionTemplate.Service.Core.Exceptions;
 using SolutionTemplate.Service.Core.Interfaces;
+using SolutionTemplate.Service.Core.ModelMaps;
 using System.Collections.Generic;
 
 namespace SolutionTemplate.Service
