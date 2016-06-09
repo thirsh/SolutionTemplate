@@ -8,7 +8,7 @@ namespace SolutionTemplate.RestApi.Entities
 {
     public class PaginationHeader
     {
-        public PaginationHeader(HttpRequestMessage request, string routeName, string sort, int pageNumber, int pageSize, int totalCount)
+        public PaginationHeader(HttpRequestMessage request, string routeName, string sort, int pageNumber, int pageSize, int totalCount, string includes)
         {
             PageNumber = pageNumber;
             PageSize = pageSize;
@@ -22,11 +22,11 @@ namespace SolutionTemplate.RestApi.Entities
 
             PreviousPageLink = pageNumber <= 1
                 ? null
-                : urlHelper.Link(routeName, new { sort, pageNumber = pageNumber - 1, pageSize });
+                : urlHelper.Link(routeName, new { sort, pageNumber = pageNumber - 1, pageSize, includes });
 
             NextPageLink = pageNumber >= TotalPages
                 ? null
-                : urlHelper.Link(routeName, new { sort, pageNumber = pageNumber + 1, pageSize });
+                : urlHelper.Link(routeName, new { sort, pageNumber = pageNumber + 1, pageSize, includes });
         }
 
         public int PageNumber { get; }
