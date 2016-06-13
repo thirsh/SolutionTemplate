@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json.Serialization;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using System.Web.Http;
 
 namespace SolutionTemplate.RestApi
@@ -15,12 +16,9 @@ namespace SolutionTemplate.RestApi
             config.Routes.MapHttpRoute("DefaultApi", "api/{controller}/{id}", new { id = RouteParameter.Optional });
 
             config.Formatters.XmlFormatter.SupportedMediaTypes.Clear();
-
-            config.Formatters.JsonFormatter.SerializerSettings.Formatting
-                = Newtonsoft.Json.Formatting.Indented;
-
-            config.Formatters.JsonFormatter.SerializerSettings.ContractResolver
-                = new CamelCasePropertyNamesContractResolver();
+            config.Formatters.JsonFormatter.SerializerSettings.Formatting = Formatting.Indented;
+            config.Formatters.JsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+            config.Formatters.JsonFormatter.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
 
             return config;
         }

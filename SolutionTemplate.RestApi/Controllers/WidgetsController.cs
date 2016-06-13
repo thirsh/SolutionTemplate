@@ -21,6 +21,7 @@ namespace SolutionTemplate.RestApi.Controllers
 
         [ResourceAuthorize(Action.Read, Resource.Widgets)]
         [Route("{id}", Name = "GetWidget")]
+        [HttpGet]
         public IHttpActionResult Get(int id)
         {
             var widget = _widgetService.GetWidget(id);
@@ -30,14 +31,30 @@ namespace SolutionTemplate.RestApi.Controllers
 
         [ResourceAuthorize(Action.Read, Resource.Widgets)]
         [Route(Name = "GetWidgets")]
-        public HttpResponseMessage Get(string sort = "Id", int pageNumber = 1, int pageSize = 10, string includes = null)
+        [HttpGet]
+        public HttpResponseMessage Get(string sort = "Id", int pageNumber = 1, int pageSize = 10)
         {
-            var pageResult = _widgetService.GetWidgets(sort, pageNumber, pageSize, includes?.Split(','));
+            var pageResult = _widgetService.GetWidgets(sort, pageNumber, pageSize);
 
             var responseMessage = Request.CreateResponse(HttpStatusCode.OK, pageResult.Items);
 
             responseMessage.Headers.Add("X-Pagination",
-                new PaginationHeader(Request, "GetWidgets", sort, pageNumber, pageSize, pageResult.TotalCount, includes).JsonSerialize());
+                new PaginationHeader(Request, "GetWidgets", sort, pageNumber, pageSize, pageResult.TotalCount).JsonSerialize());
+
+            return responseMessage;
+        }
+
+        [ResourceAuthorize(Action.Read, Resource.Widgets)]
+        [Route(Name = "GetWidgetsShape")]
+        [HttpGet]
+        public HttpResponseMessage Get(string fields, string sort = "Id", int pageNumber = 1, int pageSize = 10)
+        {
+            var pageResult = _widgetService.GetWidgets(sort, pageNumber, pageSize, fields.Split(','));
+
+            var responseMessage = Request.CreateResponse(HttpStatusCode.OK, pageResult.Items);
+
+            responseMessage.Headers.Add("X-Pagination",
+                new PaginationHeader(Request, "GetWidgetsShape", sort, pageNumber, pageSize, pageResult.TotalCount, fields).JsonSerialize());
 
             return responseMessage;
         }

@@ -6,6 +6,7 @@ using SolutionTemplate.Service.Core.Entities;
 using SolutionTemplate.Service.Core.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
@@ -53,6 +54,44 @@ namespace SolutionTemplate.RestApi.Test
             Assert.IsTrue(responseMessage.TryGetContentValue(out responseWidgets));
             Assert.AreEqual(pageResult.Items.Count, responseWidgets.Count);
             Assert.AreEqual(pageResult.Items[0].Id, responseWidgets[0].Id);
+        }
+
+        [TestMethod]
+        public void GetReturnsWidgetsShapeContentResult()
+        {
+            var widget = new ExpandoObject();
+
+            ((IDictionary<string, object>)widget).Add("Id", (int)DateTime.Now.Ticks);
+
+            var widgets = new List<object>();
+
+            widgets.Add(widget);
+
+            var pageResult = new PageResult<object>(1, 10, 20, widgets);
+
+            var widgetService = new Mock<IWidgetService>();
+
+            widgetService.Setup(x => x.GetWidgets("Id", 1, 10, "Id")).Returns(pageResult);
+
+            var controller = new WidgetsController(widgetService.Object);
+
+            controller.Request = new HttpRequestMessage { RequestUri = new Uri("http://localhost/api/widgets") };
+            controller.Configuration = new HttpConfiguration();
+            controller.Configuration.Routes.MapHttpRoute("GetWidgetsShape", "api/{controller}");
+            controller.RequestContext.RouteData = new HttpRouteData(new HttpRoute(), new HttpRouteValueDictionary { { "controller", "widgets" } });
+
+            var responseMessage = controller.Get(fields: "Id");
+
+            widgetService.Verify(x => x.GetWidgets("Id", 1, 10, "Id"), Times.Once);
+
+            List<object> responseWidgets;
+
+            Assert.IsNotNull(responseMessage);
+            Assert.IsTrue(responseMessage.IsSuccessStatusCode);
+            Assert.IsTrue(responseMessage.Headers.Contains("X-Pagination"));
+            Assert.IsTrue(responseMessage.TryGetContentValue(out responseWidgets));
+            Assert.AreEqual(pageResult.Items.Count, responseWidgets.Count);
+            Assert.AreEqual(((dynamic)pageResult.Items[0]).Id, ((dynamic)responseWidgets[0]).Id);
         }
 
         [TestMethod]

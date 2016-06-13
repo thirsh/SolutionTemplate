@@ -40,6 +40,7 @@
   <ItemGroup>
     <Compile Include="Entities\PageResult.cs" />
     <Compile Include="Exceptions\NotFoundException.cs" />
+    <Compile Include="Extensions\Object.cs" />
     <Compile Include="Extensions\Strings.cs" />
     <Compile Include="Interfaces\IDoodadService.cs" />
     <Compile Include="Interfaces\IWidgetService.cs" />

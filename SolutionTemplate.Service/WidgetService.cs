@@ -8,8 +8,6 @@ using SolutionTemplate.Service.Core.Exceptions;
 using SolutionTemplate.Service.Core.Extensions;
 using SolutionTemplate.Service.Core.Interfaces;
 using SolutionTemplate.Service.Core.ModelMaps;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace SolutionTemplate.Service
 {
@@ -26,25 +24,32 @@ namespace SolutionTemplate.Service
             _doodadRepo = doodadRepo;
         }
 
-        public PageResult<WidgetGet> GetWidgets(string sort = "Id", int pageNumber = 1, int pageSize = 10, params string[] includes)
+        public PageResult<WidgetGet> GetWidgets(string sort = "Id", int pageNumber = 1, int pageSize = 10)
         {
-            IEnumerable<Widget> widgets;
+            var widgets = _widgetRepo.GetAll(
+                sort.ToPagingOptions<Widget>(pageNumber, pageSize),
+                x => x.Doodads);
 
-            if (includes == null || !includes.Any())
-            {
-                widgets = _widgetRepo.GetAll(sort.ToPagingOptions<Widget>(pageNumber, pageSize));
-            }
-            else
-            {
-                widgets = _widgetRepo.GetAll(sort.ToPagingOptions<Widget>(pageNumber, pageSize), includes);
-
-                // Seems to be a bug with QueryOptions and GetAll, need to invoke this to get association properties loaded
-                _widgetRepo.GetAll("Doodads");
-            }
+            // Seems to be a bug with QueryOptions and GetAll, need to invoke this to get association properties loaded
+            _widgetRepo.GetAll(new GenericFetchStrategy<Widget>().Include(x => x.Doodads));
 
             var totalCount = _widgetRepo.Count();
 
             return new PageResult<WidgetGet>(pageNumber, pageSize, totalCount, widgets.ToBusinessModels());
+        }
+
+        public PageResult<object> GetWidgets(string sort = "Id", int pageNumber = 1, int pageSize = 10, params string[] fields)
+        {
+            var widgets = _widgetRepo.GetAll(
+                sort.ToPagingOptions<Widget>(pageNumber, pageSize),
+                x => x.Doodads);
+
+            // Seems to be a bug with QueryOptions and GetAll, need to invoke this to get association properties loaded
+            _widgetRepo.GetAll(new GenericFetchStrategy<Widget>().Include(x => x.Doodads));
+
+            var totalCount = _widgetRepo.Count();
+
+            return new PageResult<object>(pageNumber, pageSize, totalCount, widgets.ToBusinessModels().ToShapes(fields));
         }
 
         public WidgetGet GetWidget(int id)

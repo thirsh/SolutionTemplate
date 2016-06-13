@@ -19,6 +19,7 @@ namespace SolutionTemplate.RestApi.Controllers
 
         [ResourceAuthorize(Action.Read, Resource.Doodads)]
         [Route("widgets/{widgetId}/doodads")]
+        [HttpGet]
         public IHttpActionResult Find(int widgetId)
         {
             var doodads = _doodadService.FindDoodads(widgetId);
@@ -29,6 +30,7 @@ namespace SolutionTemplate.RestApi.Controllers
         [ResourceAuthorize(Action.Read, Resource.Doodads)]
         [Route("doodads/{id}", Name = "GetDoodad")]
         [Route("widgets/{widgetId}/doodads/{id}")]
+        [HttpGet]
         public IHttpActionResult Get(int id, int? widgetId = null)
         {
             var doodad = _doodadService.GetDoodad(id);

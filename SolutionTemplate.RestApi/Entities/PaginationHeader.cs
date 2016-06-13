@@ -8,7 +8,7 @@ namespace SolutionTemplate.RestApi.Entities
 {
     public class PaginationHeader
     {
-        public PaginationHeader(HttpRequestMessage request, string routeName, string sort, int pageNumber, int pageSize, int totalCount, string includes)
+        public PaginationHeader(HttpRequestMessage request, string routeName, string sort, int pageNumber, int pageSize, int totalCount, string fields = null)
         {
             PageNumber = pageNumber;
             PageSize = pageSize;
@@ -22,11 +22,11 @@ namespace SolutionTemplate.RestApi.Entities
 
             PreviousPageLink = pageNumber <= 1
                 ? null
-                : urlHelper.Link(routeName, new { sort, pageNumber = pageNumber - 1, pageSize, includes });
+                : urlHelper.Link(routeName, new { sort, pageNumber = pageNumber - 1, pageSize, fields });
 
             NextPageLink = pageNumber >= TotalPages
                 ? null
-                : urlHelper.Link(routeName, new { sort, pageNumber = pageNumber + 1, pageSize, includes });
+                : urlHelper.Link(routeName, new { sort, pageNumber = pageNumber + 1, pageSize, fields });
         }
 
         public int PageNumber { get; }
@@ -38,7 +38,12 @@ namespace SolutionTemplate.RestApi.Entities
 
         public string JsonSerialize()
         {
-            return JsonConvert.SerializeObject(this, new JsonSerializerSettings { ContractResolver = new CamelCasePropertyNamesContractResolver() });
+            return JsonConvert.SerializeObject(this,
+                new JsonSerializerSettings
+                {
+                    ContractResolver = new CamelCasePropertyNamesContractResolver(),
+                    NullValueHandling = NullValueHandling.Ignore
+                });
         }
     }
 }
