@@ -7,7 +7,7 @@ using Thinktecture.IdentityModel.WebApi;
 
 namespace SolutionTemplate.RestApi.Controllers
 {
-    [RoutePrefix("api")]
+    [RoutePrefix("api/v1")]
     public class DoodadsController : ApiController
     {
         private readonly IDoodadService _doodadService;

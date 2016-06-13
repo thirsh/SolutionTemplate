@@ -9,7 +9,7 @@ using Thinktecture.IdentityModel.WebApi;
 
 namespace SolutionTemplate.RestApi.Controllers
 {
-    [RoutePrefix("api/widgets")]
+    [RoutePrefix("api/v1/widgets")]
     public class WidgetsController : ApiController
     {
         private readonly IWidgetService _widgetService;
