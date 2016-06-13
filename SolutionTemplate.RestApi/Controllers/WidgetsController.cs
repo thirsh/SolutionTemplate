@@ -49,6 +49,11 @@ namespace SolutionTemplate.RestApi.Controllers
         [HttpGet]
         public HttpResponseMessage Get(string fields, string sort = "Id", int pageNumber = 1, int pageSize = 10)
         {
+            if (string.IsNullOrWhiteSpace(fields))
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, new HttpError("Fields not included in request."));
+            }
+
             var pageResult = _widgetService.GetWidgets(sort, pageNumber, pageSize, fields.Split(','));
 
             var responseMessage = Request.CreateResponse(HttpStatusCode.OK, pageResult.Items);
