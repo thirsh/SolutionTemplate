@@ -7,7 +7,7 @@ using System.Net.Http;
 using System.Web.Http;
 using Thinktecture.IdentityModel.WebApi;
 
-namespace SolutionTemplate.RestApi.Controllers
+namespace SolutionTemplate.RestApi.Controllers.V1
 {
     [RoutePrefix("api/v1/widgets")]
     public class WidgetsController : ApiController

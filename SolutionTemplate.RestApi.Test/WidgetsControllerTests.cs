@@ -1,7 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using SolutionTemplate.BusinessModel;
-using SolutionTemplate.RestApi.Controllers;
+using SolutionTemplate.RestApi.Controllers.V1;
 using SolutionTemplate.Service.Core.Entities;
 using SolutionTemplate.Service.Core.Interfaces;
 using System;

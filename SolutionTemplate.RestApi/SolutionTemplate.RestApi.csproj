@@ -193,8 +193,8 @@
     <Compile Include="Authorization\Role.cs" />
     <Compile Include="Authorization\Resource.cs" />
     <Compile Include="Authorization\Action.cs" />
-    <Compile Include="Controllers\v1\DoodadsController.cs" />
-    <Compile Include="Controllers\v1\WidgetsController.cs" />
+    <Compile Include="Controllers\V1\DoodadsController.cs" />
+    <Compile Include="Controllers\V1\WidgetsController.cs" />
     <Compile Include="Authorization\ApiAuthorizationManager.cs" />
     <Compile Include="Entities\PaginationHeader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
