@@ -211,6 +211,8 @@
     <Compile Include="Controllers\V1\WidgetsController.cs" />
     <Compile Include="Authorization\ApiAuthorizationManager.cs" />
     <Compile Include="Entities\PaginationHeader.cs" />
+    <Compile Include="Logging\RequestLoggingAttribute.cs" />
+    <Compile Include="Logging\NLogger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>

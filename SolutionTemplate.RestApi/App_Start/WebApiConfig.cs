@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
+using SolutionTemplate.RestApi.Logging;
 using System.Web.Http;
 
 namespace SolutionTemplate.RestApi
@@ -10,7 +11,6 @@ namespace SolutionTemplate.RestApi
         {
             var config = new HttpConfiguration();
 
-            // Web API
             config.MapHttpAttributeRoutes();
 
             config.Routes.MapHttpRoute("DefaultApi", "api/{controller}/{id}", new { id = RouteParameter.Optional });
@@ -19,6 +19,8 @@ namespace SolutionTemplate.RestApi
             config.Formatters.JsonFormatter.SerializerSettings.Formatting = Formatting.Indented;
             config.Formatters.JsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
             config.Formatters.JsonFormatter.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
+
+            config.Filters.Add(new RequestLoggingAttribute());
 
             return config;
         }
