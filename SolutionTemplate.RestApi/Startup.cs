@@ -4,6 +4,7 @@ using Ninject;
 using Ninject.Web.Common;
 using Ninject.Web.Common.OwinHost;
 using Ninject.Web.WebApi.OwinHost;
+using NLog.Owin.Logging;
 using Owin;
 using SharpRepository.Ioc.Ninject;
 using SharpRepository.Repository.Ioc;
@@ -40,6 +41,8 @@ namespace SolutionTemplate.RestApi
             app
                 .UseNinjectMiddleware(CreateKernel)
                 .UseNinjectWebApi(WebApiConfig.Register());
+
+            app.UseNLog();
         }
 
         private static StandardKernel CreateKernel()
