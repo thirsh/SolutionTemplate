@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 
-namespace SolutionTemplate.Service.Core.Extensions
+namespace SolutionTemplate.Core.Extensions
 {
     public static class ObjectExtensions
     {

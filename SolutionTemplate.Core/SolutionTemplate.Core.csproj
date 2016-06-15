@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="Claims\Claims.cs" />
     <Compile Include="Claims\IClaims.cs" />
+    <Compile Include="Extensions\Object.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

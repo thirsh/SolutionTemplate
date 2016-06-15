@@ -1,6 +1,6 @@
 ﻿using SolutionTemplate.BusinessModel;
+using SolutionTemplate.Core.Extensions;
 using SolutionTemplate.DataModel;
-using SolutionTemplate.Service.Core.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Dynamic;
