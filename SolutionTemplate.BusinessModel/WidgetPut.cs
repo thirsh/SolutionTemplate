@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace SolutionTemplate.BusinessModel
+﻿namespace SolutionTemplate.BusinessModel
 {
     public class WidgetPut
     {

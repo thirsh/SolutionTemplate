@@ -13,7 +13,7 @@ namespace SolutionTemplate.RestApi.Controllers.V1
     [RoutePrefix("api/v1/widgets")]
     public class WidgetsController : ApiController
     {
-        private static Logger _logger = LogManager.GetCurrentClassLogger();
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
         private readonly IWidgetService _widgetService;
 
         public WidgetsController(IWidgetService widgetService)
@@ -36,7 +36,7 @@ namespace SolutionTemplate.RestApi.Controllers.V1
         [HttpGet]
         public HttpResponseMessage Get(string sort = "Id", int pageNumber = 1, int pageSize = 10)
         {
-            _logger.Info("Getting Widgets!");
+            Logger.Info("Getting Widgets!");
 
             var pageResult = _widgetService.GetWidgets(sort, pageNumber, pageSize);
 

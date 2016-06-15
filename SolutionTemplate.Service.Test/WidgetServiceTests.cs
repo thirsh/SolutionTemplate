@@ -8,7 +8,6 @@ using SolutionTemplate.Core.Claims;
 using SolutionTemplate.DataModel;
 using System;
 using System.Collections.Generic;
-using System.Dynamic;
 using System.Linq.Expressions;
 
 namespace SolutionTemplate.Service.Test

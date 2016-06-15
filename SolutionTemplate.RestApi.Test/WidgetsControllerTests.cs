@@ -63,9 +63,7 @@ namespace SolutionTemplate.RestApi.Test
 
             ((IDictionary<string, object>)widget).Add("Id", (int)DateTime.Now.Ticks);
 
-            var widgets = new List<object>();
-
-            widgets.Add(widget);
+            var widgets = new List<object> { widget };
 
             var pageResult = new PageResult<object>(1, 10, 20, widgets);
 
