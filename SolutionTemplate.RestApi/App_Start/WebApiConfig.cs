@@ -20,7 +20,8 @@ namespace SolutionTemplate.RestApi
             config.Formatters.JsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
             config.Formatters.JsonFormatter.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
 
-            config.Filters.Add(new RequestLoggingAttribute());
+            config.Filters.Add(new RequestLogAttribute());
+            config.Filters.Add(new ExceptionLogAttribute());
 
             return config;
         }

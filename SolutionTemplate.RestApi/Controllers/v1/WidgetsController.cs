@@ -1,5 +1,6 @@
 ﻿using NLog;
 using SolutionTemplate.BusinessModel;
+using SolutionTemplate.Core.Extensions;
 using SolutionTemplate.RestApi.Authorization;
 using SolutionTemplate.RestApi.Entities;
 using SolutionTemplate.Service.Core.Interfaces;
@@ -43,7 +44,7 @@ namespace SolutionTemplate.RestApi.Controllers.V1
             var responseMessage = Request.CreateResponse(HttpStatusCode.OK, pageResult.Items);
 
             responseMessage.Headers.Add("X-Pagination",
-                new PaginationHeader(Request, "GetWidgets", sort, pageNumber, pageSize, pageResult.TotalCount).JsonSerialize());
+                new PaginationHeader(Request, "GetWidgets", sort, pageNumber, pageSize, pageResult.TotalCount).ToJson());
 
             return responseMessage;
         }
@@ -63,7 +64,7 @@ namespace SolutionTemplate.RestApi.Controllers.V1
             var responseMessage = Request.CreateResponse(HttpStatusCode.OK, pageResult.Items);
 
             responseMessage.Headers.Add("X-Pagination",
-                new PaginationHeader(Request, "GetWidgetsShape", sort, pageNumber, pageSize, pageResult.TotalCount, fields).JsonSerialize());
+                new PaginationHeader(Request, "GetWidgetsShape", sort, pageNumber, pageSize, pageResult.TotalCount, fields).ToJson());
 
             return responseMessage;
         }

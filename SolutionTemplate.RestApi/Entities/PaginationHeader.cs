@@ -1,6 +1,4 @@
-﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
-using System;
+﻿using System;
 using System.Net.Http;
 using System.Web.Http.Routing;
 
@@ -35,15 +33,5 @@ namespace SolutionTemplate.RestApi.Entities
         public string NextPageLink { get; }
         public int TotalCount { get; }
         public int TotalPages { get; }
-
-        public string JsonSerialize()
-        {
-            return JsonConvert.SerializeObject(this,
-                new JsonSerializerSettings
-                {
-                    ContractResolver = new CamelCasePropertyNamesContractResolver(),
-                    NullValueHandling = NullValueHandling.Ignore
-                });
-        }
     }
 }
