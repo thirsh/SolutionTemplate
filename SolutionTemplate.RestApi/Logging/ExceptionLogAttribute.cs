@@ -15,7 +15,6 @@ namespace SolutionTemplate.RestApi.Logging
         {
             var message = new StringBuilder();
 
-            message.AppendLine();
             message.AppendLine("Request: " + actionExecutedContext.Request);
             message.AppendLine("Controller: " + actionExecutedContext.ActionContext.ControllerContext.ControllerDescriptor.ControllerType.FullName);
             message.AppendLine("Action: " + actionExecutedContext.ActionContext.ActionDescriptor.ActionName);
