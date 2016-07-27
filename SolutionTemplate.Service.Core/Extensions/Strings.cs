@@ -8,7 +8,7 @@ namespace SolutionTemplate.Service.Core.Extensions
         {
             var sorting = sort.Split(',');
 
-            //TODO: Map business model fields need to their data model equivalents.
+            //TODO: Map business model fields to their data model equivalents.
             var sortingOptions = new SortingOptions<T>(sorting[0].TrimStart('-'), sorting[0].StartsWith("-"));
 
             if (sorting.Length > 1)
@@ -26,7 +26,7 @@ namespace SolutionTemplate.Service.Core.Extensions
         {
             var sorting = sort.Split(',');
 
-            //TODO: Map business model fields need to their data model equivalents.
+            //TODO: Map business model fields to their data model equivalents.
             var pagingOptions = new PagingOptions<T>(pageNumber, pageSize, sorting[0].TrimStart('-'), sorting[0].StartsWith("-"));
 
             if (sorting.Length > 1)
