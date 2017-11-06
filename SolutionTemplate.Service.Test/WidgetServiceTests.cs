@@ -3,7 +3,6 @@ using Moq;
 using SharpRepository.Repository;
 using SharpRepository.Repository.FetchStrategies;
 using SharpRepository.Repository.Queries;
-using SharpRepository.Repository.Specifications;
 using SolutionTemplate.BusinessModel;
 using SolutionTemplate.Core.Claims;
 using SolutionTemplate.DataModel;
@@ -16,36 +15,6 @@ namespace SolutionTemplate.Service.Test
     [TestClass]
     public class WidgetServiceTests
     {
-        // Uncomment when GetAll issue is resolved
-        // https://github.com/SharpRepository/SharpRepository/issues/156
-        //[TestMethod]
-        //public void GetWidgets()
-        //{
-        //    var widgets = new List<Widget>
-        //    {
-        //        new Widget
-        //        {
-        //            Id = (int)DateTime.Now.Ticks
-        //        }
-        //    };
-
-        //    var claims = new Mock<IClaims>();
-        //    var widgetRepository = new Mock<IRepository<Widget>>();
-
-        //    widgetRepository.Setup(x => x.GetAll(It.IsAny<PagingOptions<Widget>>(), It.IsAny<Expression<Func<Widget, object>>>())).Returns(widgets);
-
-        //    var service = new WidgetService(claims.Object, widgetRepository.Object, null);
-
-        //    var pageResult = service.GetWidgets();
-
-        //    widgetRepository.Verify(x => x.GetAll(It.IsAny<PagingOptions<Widget>>(), It.IsAny<Expression<Func<Widget, object>>>()), Times.Once);
-        //    widgetRepository.Verify(x => x.Count(), Times.Once);
-
-        //    Assert.IsNotNull(pageResult);
-        //    Assert.AreEqual(widgets.Count, pageResult.Items.Count);
-        //    Assert.AreEqual(widgets[0].Id, pageResult.Items[0].Id);
-        //}
-
         [TestMethod]
         public void GetWidgets()
         {
@@ -60,49 +29,19 @@ namespace SolutionTemplate.Service.Test
             var claims = new Mock<IClaims>();
             var widgetRepository = new Mock<IRepository<Widget>>();
 
-            widgetRepository.Setup(x => x.FindAll(It.IsAny<Specification<Widget>>(), It.IsAny<PagingOptions<Widget>>())).Returns(widgets);
+            widgetRepository.Setup(x => x.GetAll(It.IsAny<PagingOptions<Widget>>(), It.IsAny<Expression<Func<Widget, object>>>())).Returns(widgets);
 
             var service = new WidgetService(claims.Object, widgetRepository.Object, null);
 
             var pageResult = service.GetWidgets();
 
-            widgetRepository.Verify(x => x.FindAll(It.IsAny<Specification<Widget>>(), It.IsAny<PagingOptions<Widget>>()), Times.Once);
+            widgetRepository.Verify(x => x.GetAll(It.IsAny<PagingOptions<Widget>>(), It.IsAny<Expression<Func<Widget, object>>>()), Times.Once);
             widgetRepository.Verify(x => x.Count(), Times.Once);
 
             Assert.IsNotNull(pageResult);
             Assert.AreEqual(widgets.Count, pageResult.Items.Count);
             Assert.AreEqual(widgets[0].Id, pageResult.Items[0].Id);
         }
-
-        // Uncomment when GetAll issue is resolved
-        // https://github.com/SharpRepository/SharpRepository/issues/156
-        //[TestMethod]
-        //public void GetWidgetsShape()
-        //{
-        //    var widgets = new List<Widget>
-        //    {
-        //        new Widget
-        //        {
-        //            Id = (int)DateTime.Now.Ticks
-        //        }
-        //    };
-
-        //    var claims = new Mock<IClaims>();
-        //    var widgetRepository = new Mock<IRepository<Widget>>();
-
-        //    widgetRepository.Setup(x => x.GetAll(It.IsAny<PagingOptions<Widget>>(), It.IsAny<Expression<Func<Widget, object>>>())).Returns(widgets);
-
-        //    var service = new WidgetService(claims.Object, widgetRepository.Object, null);
-
-        //    var pageResult = service.GetWidgets(fields: "Id");
-
-        //    widgetRepository.Verify(x => x.GetAll(It.IsAny<PagingOptions<Widget>>(), It.IsAny<Expression<Func<Widget, object>>>()), Times.Once);
-        //    widgetRepository.Verify(x => x.Count(), Times.Once);
-
-        //    Assert.IsNotNull(pageResult);
-        //    Assert.AreEqual(widgets.Count, pageResult.Items.Count);
-        //    Assert.AreEqual(widgets[0].Id, ((dynamic)pageResult.Items[0]).Id);
-        //}
 
         [TestMethod]
         public void GetWidgetsShape()
@@ -118,13 +57,13 @@ namespace SolutionTemplate.Service.Test
             var claims = new Mock<IClaims>();
             var widgetRepository = new Mock<IRepository<Widget>>();
 
-            widgetRepository.Setup(x => x.FindAll(It.IsAny<Specification<Widget>>(), It.IsAny<PagingOptions<Widget>>())).Returns(widgets);
+            widgetRepository.Setup(x => x.GetAll(It.IsAny<PagingOptions<Widget>>(), It.IsAny<Expression<Func<Widget, object>>>())).Returns(widgets);
 
             var service = new WidgetService(claims.Object, widgetRepository.Object, null);
 
             var pageResult = service.GetWidgets(fields: "Id");
 
-            widgetRepository.Verify(x => x.FindAll(It.IsAny<Specification<Widget>>(), It.IsAny<PagingOptions<Widget>>()), Times.Once);
+            widgetRepository.Verify(x => x.GetAll(It.IsAny<PagingOptions<Widget>>(), It.IsAny<Expression<Func<Widget, object>>>()), Times.Once);
             widgetRepository.Verify(x => x.Count(), Times.Once);
 
             Assert.IsNotNull(pageResult);

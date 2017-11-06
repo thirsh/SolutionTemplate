@@ -132,15 +132,15 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="SharpRepository.EfRepository, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\SharpRepository.EfRepository.1.4.7.2\lib\net40\SharpRepository.EfRepository.dll</HintPath>
+      <HintPath>..\packages\SharpRepository.EfRepository.1.5.0.4\lib\net452\SharpRepository.EfRepository.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="SharpRepository.Ioc.Ninject, Version=1.4.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\SharpRepository.Ioc.Ninject.1.4.0.0\lib\net40\SharpRepository.Ioc.Ninject.dll</HintPath>
+    <Reference Include="SharpRepository.Ioc.Ninject, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpRepository.Ioc.Ninject.1.5.0.2\lib\net452\SharpRepository.Ioc.Ninject.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="SharpRepository.Repository, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\SharpRepository.Repository.1.4.7.2\lib\net40\SharpRepository.Repository.dll</HintPath>
+      <HintPath>..\packages\SharpRepository.Repository.1.5.0.3\lib\net452\SharpRepository.Repository.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.IdentityModel" />

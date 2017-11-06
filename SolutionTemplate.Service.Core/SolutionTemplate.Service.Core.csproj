@@ -31,7 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="SharpRepository.Repository, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\SharpRepository.Repository.1.4.7.2\lib\net40\SharpRepository.Repository.dll</HintPath>
+      <HintPath>..\packages\SharpRepository.Repository.1.5.0.3\lib\net452\SharpRepository.Repository.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />

@@ -1,6 +1,5 @@
 ﻿using SharpRepository.Repository;
 using SharpRepository.Repository.FetchStrategies;
-using SharpRepository.Repository.Specifications;
 using SolutionTemplate.BusinessModel;
 using SolutionTemplate.Core.Claims;
 using SolutionTemplate.DataModel;
@@ -27,17 +26,9 @@ namespace SolutionTemplate.Service
 
         public PageResult<WidgetGet> GetWidgets(string sort = "Id", int pageNumber = 1, int pageSize = 10)
         {
-            // Seems to be a bug with QueryOptions and GetAll, associations do not include.  Use FindAll for now.
-            // https://github.com/SharpRepository/SharpRepository/issues/156
-            //var widgets = _widgetRepo.GetAll(
-            //    sort.ToPagingOptions<Widget>(pageNumber, pageSize),
-            //    x => x.Doodads);
-
-            var spec = new Specification<Widget>();
-
-            spec.FetchStrategy.Include(x => x.Doodads);
-
-            var widgets = _widgetRepo.FindAll(spec, sort.ToPagingOptions<Widget>(pageNumber, pageSize));
+            var widgets = _widgetRepo.GetAll(
+                sort.ToPagingOptions<Widget>(pageNumber, pageSize),
+                x => x.Doodads);
 
             var totalCount = _widgetRepo.Count();
 
@@ -46,17 +37,9 @@ namespace SolutionTemplate.Service
 
         public PageResult<object> GetWidgets(string sort = "Id", int pageNumber = 1, int pageSize = 10, params string[] fields)
         {
-            // Seems to be a bug with QueryOptions and GetAll, associations do not include.  Use FindAll for now.
-            // https://github.com/SharpRepository/SharpRepository/issues/156
-            //var widgets = _widgetRepo.GetAll(
-            //    sort.ToPagingOptions<Widget>(pageNumber, pageSize),
-            //    x => x.Doodads);
-
-            var spec = new Specification<Widget>();
-
-            spec.FetchStrategy.Include(x => x.Doodads);
-
-            var widgets = _widgetRepo.FindAll(spec, sort.ToPagingOptions<Widget>(pageNumber, pageSize));
+            var widgets = _widgetRepo.GetAll(
+                sort.ToPagingOptions<Widget>(pageNumber, pageSize),
+                x => x.Doodads);
 
             var totalCount = _widgetRepo.Count();
 
